@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S.A. Rent - Noleggio auto e trasporto turisti</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset e base */
+    :root {
+      --primary: #0056b3;
+      --primary-dark: #003d7a;
+      --secondary: #ff6b00;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa; 
+      color: var(--dark);
+      line-height: 1.7;
+    }
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: all 0.3s ease;
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0; 
+      font-weight: 700; 
+      font-size: 2rem;
+      cursor: default;
+      user-select: none;
+      letter-spacing: 1px;
+    }
+    
+    /* Lingua */
+    #language-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+    #language-switcher button {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    #language-switcher button:hover,
+    #language-switcher button.active {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+    
+    /* Banner */
+    .banner {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+      height: 80vh;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding: 0 1rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0,86,179,0.8), rgba(0,61,122,0.9));
+    }
+    
+    .banner-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      animation: fadeInUp 1s ease-out;
+    }
+    
+    .banner h2 {
+      font-size: 3rem;
+      margin: 0 0 1.5rem 0;
+      font-weight: 700;
+      line-height: 1.2;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+    
+    .banner p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--secondary);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      border: 2px solid var(--secondary);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      font-size: 1rem;
+    }
+    
+    .btn:hover {
+      background: transparent;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Foto grande sotto banner */
+    .hero-image {
+      width: 90%;
+      max-height: 500px;
+      object-fit: cover;
+      display: block;
+      margin: -3rem auto 4rem auto;
+      user-select: none;
+      border-radius: 15px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      border: 5px solid white;
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* Container contenuti */
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto 5rem auto;
+      padding: 0 1.5rem;
+    }
+    
+    /* Sezioni */
+    section {
+      margin-bottom: 5rem;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-title h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+    .section-title h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+    .section-title p {
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    /* Servizi */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem auto;
+      font-size: 2rem;
+    }
+    
+    .service-card h4 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .service-description {
+      color: var(--gray);
+      font-size: 1rem;
+    }
+    
+    /* Contatti */
+    .contacts-section {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 4rem 0;
+      border-radius: 20px;
+      margin: 5rem 0;
+    }
+    
+    .contacts-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    .contact-info {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    
+    .contact-info h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .contact-info h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary);
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+    
+    .contact-details {
+      flex: 1;
+    }
+    
+    .contact-details h5 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: var(--dark);
+    }
+    
+    .contact-details a, 
+    .contact-details p {
+      color: var(--gray);
+      transition: color 0.3s ease;
+    }
+    
+    .contact-details a:hover {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .social-link {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link.facebook {
+      background: #3b5998;
+    }
+    
+    .social-link.instagram {
+      background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+    }
+    
+    .social-link.whatsapp {
+      background: #25D366;
+    }
+    
+    .social-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    /* Form preventivo */
+    .form-container {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 3rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+    
+    form input:focus, form select:focus, form textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,86,179,0.1);
+      outline: none;
+    }
+    
+    form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, var(--secondary), #ff8c00);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 1rem;
+      box-shadow: 0 5px 15px rgba(255,107,0,0.3);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255,107,0,0.4);
+    }
+    
+    /* Mappa */
+    .map-container {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin: 4rem auto;
+      max-width: 1200px;
+    }
+    
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 3rem 0 1.5rem 0;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 0 1.5rem 2rem 1.5rem;
+    }
+    
+    .footer-column h4 {
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+    
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--secondary);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-column ul li a {
+      color: rgba(255,255,255,0.8);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .footer-column ul li a:hover {
+      color: white;
+      text-decoration: none;
+      transform: translateX(5px);
+    }
+    
+    .footer-column p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.5rem;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+      margin-top: 2rem;
+    }
+    
+    /* Cookie banner */
+    #cookie-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: white;
+      color: var(--dark);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 9999;
+      user-select: none;
+      max-width: 1000px;
+      margin: 0 auto;
+      border: 1px solid #eee;
+    }
+    
+    #cookie-banner p {
+      margin: 0;
+      flex: 1 1 300px;
+      color: var(--gray);
+    }
+    
+    #cookie-banner button {
+      background: var(--primary);
+      border: none;
+      color: white;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+    
+    #cookie-banner button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .banner h2 {
+        font-size: 2.5rem;
+      }
+      
+      .banner p {
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+      
+      .banner {
+        height: 70vh;
+      }
+      
+      .banner h2 {
+        font-size: 2rem;
+      }
+      
+      .hero-image {
+        width: 95%;
+        margin-top: -2rem;
+      }
+      
+      .form-container {
+        padding: 2rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .banner h2 {
+        font-size: 1.8rem;
+      }
+      
+      .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .section-title h3 {
+        font-size: 1.8rem;
+      }
+      
+      #cookie-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      #cookie-banner button {
+        margin: 1rem 0 0 0;
+        width: 100%;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <h1>S.A. Rent</h1>
+  <div id="language-switcher">
+    <button data-lang="it" class="active" aria-label="Lingua italiana">IT</button>
+    <button data-lang="en" aria-label="English language">EN</button>
+  </div>
+</header>
+
+<main>
+  <section class="banner" role="banner" aria-label="Banner principale">
+    <div class="banner-content">
+      <h2 id="banner-slogan">Noleggio auto, moto e trasporto turisti con stile ed eleganza</h2>
+      <p>Servizi premium per clienti esigenti in tutta Italia</p>
+      <a href="#preventivo" class="btn">Richiedi un preventivo</a>
+    </div>
+  </section>
+
+  <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1350&q=80" alt="Auto elegante per noleggio" class="hero-image" />
+
+  <div class="container">
+    <section aria-labelledby="servizi-title">
+      <div class="section-title">
+        <h3 id="servizi-title">I nostri servizi</h3>
+        <p>Offriamo soluzioni di mobilità premium per ogni tua esigenza</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-car"></i>
+          </div>
+          <h4>Noleggio auto</h4>
+          <p class="service-description">Auto premium per ogni esigenza, da city car a berline di lusso, con opzioni di noleggio breve e lungo termine.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-motorcycle"></i>
+          </div>
+          <h4>Noleggio moto</h4>
+          <p class="service-description">Moto sportive e tourer per vivere la strada in libertà, con assistenza 24/7 e assicurazione inclusa.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-ship"></i>
+          </div>
+          <h4>Noleggio nautica</h4>
+          <p class="service-description">Barche e yacht per vivere il mare in totale relax, con equipaggio opzionale e servizi personalizzati.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-taxi"></i>
+          </div>
+          <h4>NCC con conducente</h4>
+          <p class="service-description">Servizio chauffeur professionale per i tuoi spostamenti, con auto di lusso e massima privacy.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="preventivo" aria-labelledby="preventivo-title">
+      <div class="section-title">
+        <h3 id="preventivo-title">Richiedi un preventivo</h3>
+        <p>Compila il form e ti risponderemo entro 24 ore con la migliore offerta</p>
+      </div>
+      <div class="form-container">
+        <form id="preventivo-form" aria-label="Modulo richiesta preventivo">
+          <div class="form-group">
+            <label for="name" id="label-name">Nome e cognome</label>
+            <input type="text" id="name" name="name" required placeholder="Mario Rossi" />
+          </div>
+
+          <div class="form-group">
+            <label for="email" id="label-email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="tu@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="service" id="label-service">Servizio richiesto</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Seleziona un servizio</option>
+              <option value="auto">Noleggio auto</option>
+              <option value="moto">Noleggio moto</option>
+              <option value="nautica">Noleggio nautica</option>
+              <option value="ncc">Noleggio con conducente (NCC)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message" id="label-message">Messaggio</label>
+            <textarea id="message" name="message" rows="4" placeholder="Inserisci dettagli o richieste aggiuntive..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Invia richiesta</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="contacts-section" aria-labelledby="contatti-title">
+      <div class="section-title">
+        <h3 id="contatti-title">Contatti</h3>
+        <p>Siamo a tua disposizione per qualsiasi informazione o richiesta</p>
+      </div>
+      <div class="contacts-container">
+        <div class="contact-info">
+          <h4><i class="fas fa-phone-alt" style="margin-right: 10px;"></i> Contatti diretti</h4>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h5>Telefono</h5>
+              <a href="tel:+3908119203046">+39 081 192 03046</a>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon whatsapp">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="contact-details">
+              <h5>WhatsApp</h5>
+              <a href="https://wa.me/393406210835" target="_blank">+39 340 621 0835</a>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h5>Email</h5>
+              <a href="mailto:sarent2022@libero.it">sarent2022@libero.it</a>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="contact-details">
+              <h5>PEC</h5>
+              <a href="mailto:disommaclelia@arubapec.it">disommaclelia@arubapec.it</a>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=100083107430351" class="social-link facebook" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/s.a._rent_/" class="social-link instagram" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/393406210835" class="social-link whatsapp" target="_blank" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-info">
+          <h4><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> La nostra sede</h4>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h5>Indirizzo</h5>
+              <p>Corso Alcide De Gasperi 182<br>
+              Castellammare di Stabia (NA) 80053</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="contact-details">
+              <h5>Orari</h5>
+              <p>Lun-Ven: 9:00 - 19:00<br>
+              Sab: 9:00 - 13:00<br>
+              Dom: Chiuso</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-id-card"></i>
+            </div>
+            <div class="contact-details">
+              <h5>Partita IVA</h5>
+              <p>10014351216</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3027.9663095343008!2d14.486277315405789!3d40.64417997934009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b9f14d8a5a6a5%3A0x7a4e4a9a9a9a9a9a!2sCorso%20Alcide%20De%20Gasperi%2C%20182%2C%2080053%20Castellammare%20di%20Stabia%20NA!5e0!3m2!1sen!2sit!4v1620000000000!5m2!1sen!2sit" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-column">
+      <h4>S.A. Rent</h4>
+      <p>Noleggio auto, moto e servizi NCC con professionalità ed eleganza in tutta Italia.</p>
+      <div class="social-links" style="justify-content: flex-start;">
+        <a href="https://www.facebook.com/profile.php?id=100083107430351" class="social-link facebook" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/s.a._rent_/" class="social-link instagram" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Servizi</h4>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Noleggio auto</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Noleggio moto</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Noleggio nautica</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> NCC con conducente</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Contatti</h4>
+      <ul>
+        <li><a href="tel:+3908119203046"><i class="fas fa-phone-alt"></i> +39 081 192 03046</a></li>
+        <li><a href="https://wa.me/393406210835"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+        <li><a href="mailto:sarent2022@libero.it"><i class="fas fa-envelope"></i> sarent2022@libero.it</a></li>
+        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Mappa</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    &copy; 2023 S.A. Rent - P.IVA 10014351216 - Tutti i diritti riservati
+  </div>
+</footer>
+
+<div id="cookie-banner">
+  <p>Questo sito utilizza cookie per migliorare l'esperienza utente. Continuando a navigare, accetti il nostro utilizzo dei cookie.</p>
+  <button id="accept-cookies">Accetta</button>
+</div>
+
+<script>
+  // Cookie banner
+  document.getElementById('accept-cookies').addEventListener('click', function() {
+    document.getElementById('cookie-banner').style.display = 'none';
+    // Qui potresti impostare un cookie per ricordare la scelta dell'utente
+  });
+  
+  // Language switcher (funzionalità base)
+  document.querySelectorAll('#language-switcher button').forEach(button => {
+    button.addEventListener('click', function() {
+      document.querySelector('#language-switcher button.active').classList.remove('active');
+      this.classList.add('active');
+      // Qui potresti implementare il cambio lingua effettivo
+    });
+  });
+  
+  // Form submission
+  document.getElementById('preventivo-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Grazie per la tua richiesta! Ti contatteremo al più presto.');
+    this.reset();
+  });
+</script>
+</body>
+</html>

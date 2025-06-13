@@ -1,908 +1,935 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>S.A. Rent - Noleggio auto e trasporto turisti</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* Reset e base */
-    :root {
-      --primary: #0056b3;
-      --primary-dark: #003d7a;
-      --secondary: #ff6b00;
-      --light: #f8f9fa;
-      --dark: #212529;
-      --gray: #6c757d;
-    }
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f8f9fa; 
-      color: var(--dark);
-      line-height: 1.7;
-    }
-    a {
-      text-decoration: none;
-      color: var(--primary);
-      transition: all 0.3s ease;
-    }
-    
-    /* Header */
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-    header h1 {
-      margin: 0; 
-      font-weight: 700; 
-      font-size: 2rem;
-      cursor: default;
-      user-select: none;
-      letter-spacing: 1px;
-    }
-    
-    /* Lingua */
-    #language-switcher {
-      display: flex;
-      gap: 0.5rem;
-    }
-    #language-switcher button {
-      background: rgba(255,255,255,0.2);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    #language-switcher button:hover,
-    #language-switcher button.active {
-      background: rgba(255,255,255,0.3);
-      transform: translateY(-2px);
-    }
-    
-    /* Banner */
-    .banner {
-      position: relative;
-      background: url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
-      height: 80vh;
-      min-height: 500px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      padding: 0 1rem;
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    
-    .banner::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(0,86,179,0.8), rgba(0,61,122,0.9));
-    }
-    
-    .banner-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      animation: fadeInUp 1s ease-out;
-    }
-    
-    .banner h2 {
-      font-size: 3rem;
-      margin: 0 0 1.5rem 0;
-      font-weight: 700;
-      line-height: 1.2;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    }
-    
-    .banner p {
-      font-size: 1.3rem;
-      margin-bottom: 2.5rem;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
-    
-    .btn {
-      display: inline-block;
-      background: var(--secondary);
-      color: white;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      border: 2px solid var(--secondary);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      font-size: 1rem;
-    }
-    
-    .btn:hover {
-      background: transparent;
-      color: white;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    /* Foto grande sotto banner */
-    .hero-image {
-      width: 90%;
-      max-height: 500px;
-      object-fit: cover;
-      display: block;
-      margin: -3rem auto 4rem auto;
-      user-select: none;
-      border-radius: 15px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      border: 5px solid white;
-      position: relative;
-      z-index: 10;
-    }
-    
-    /* Container contenuti */
-    .container {
-      max-width: 1200px;
-      margin: 3rem auto 5rem auto;
-      padding: 0 1.5rem;
-    }
-    
-    /* Sezioni */
-    section {
-      margin-bottom: 5rem;
-    }
-    .section-title {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .section-title h3 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      color: var(--primary);
-      position: relative;
-      display: inline-block;
-    }
-    .section-title h3::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--secondary);
-      border-radius: 2px;
-    }
-    .section-title p {
-      color: var(--gray);
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    
-    /* Servizi */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    
-    .service-card {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.4s ease;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-    
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    }
-    
-    .service-icon {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem auto;
-      font-size: 2rem;
-    }
-    
-    .service-card h4 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-    
-    .service-description {
-      color: var(--gray);
-      font-size: 1rem;
-    }
-    
-    /* Contatti */
-    .contacts-section {
-      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-      padding: 4rem 0;
-      border-radius: 20px;
-      margin: 5rem 0;
-    }
-    
-    .contacts-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-    
-    .contact-info {
-      background: white;
-      border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    }
-    
-    .contact-info h4 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary);
-      position: relative;
-      padding-bottom: 1rem;
-    }
-    
-    .contact-info h4::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: var(--secondary);
-    }
-    
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-    }
-    
-    .contact-icon {
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      margin-right: 1rem;
-      flex-shrink: 0;
-    }
-    
-    .contact-details {
-      flex: 1;
-    }
-    
-    .contact-details h5 {
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-      color: var(--dark);
-    }
-    
-    .contact-details a, 
-    .contact-details p {
-      color: var(--gray);
-      transition: color 0.3s ease;
-    }
-    
-    .contact-details a:hover {
-      color: var(--primary);
-      text-decoration: none;
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    
-    .social-link {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-    }
-    
-    .social-link.facebook {
-      background: #3b5998;
-    }
-    
-    .social-link.instagram {
-      background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-    }
-    
-    .social-link.whatsapp {
-      background: #25D366;
-    }
-    
-    .social-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    /* Form preventivo */
-    .form-container {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      padding: 3rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    
-    form label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--primary);
-    }
-    
-    form input, form select, form textarea {
-      width: 100%;
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-size: 1rem;
-      font-family: inherit;
-      transition: all 0.3s ease;
-    }
-    
-    form input:focus, form select:focus, form textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(0,86,179,0.1);
-      outline: none;
-    }
-    
-    form textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-    
-    .submit-btn {
-      background: linear-gradient(135deg, var(--secondary), #ff8c00);
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 100%;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 1rem;
-      box-shadow: 0 5px 15px rgba(255,107,0,0.3);
-    }
-    
-    .submit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(255,107,0,0.4);
-    }
-    
-    /* Mappa */
-    .map-container {
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      margin: 4rem auto;
-      max-width: 1200px;
-    }
-    
-    iframe {
-      width: 100%;
-      height: 450px;
-      border: none;
-    }
-    
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: white;
-      padding: 3rem 0 1.5rem 0;
-      font-size: 0.9rem;
-      user-select: none;
-    }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 0 1.5rem 2rem 1.5rem;
-    }
-    
-    .footer-column h4 {
-      margin-bottom: 1.5rem;
-      font-size: 1.2rem;
-      position: relative;
-      padding-bottom: 0.8rem;
-    }
-    
-    .footer-column h4::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 40px;
-      height: 2px;
-      background: var(--secondary);
-    }
-    
-    .footer-column ul {
-      list-style: none;
-    }
-    
-    .footer-column ul li {
-      margin-bottom: 0.8rem;
-    }
-    
-    .footer-column ul li a {
-      color: rgba(255,255,255,0.8);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .footer-column ul li a:hover {
-      color: white;
-      text-decoration: none;
-      transform: translateX(5px);
-    }
-    
-    .footer-column p {
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 1.5rem;
-    }
-    
-    .copyright {
-      text-align: center;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.7);
-      margin-top: 2rem;
-    }
-    
-    /* Cookie banner */
-    #cookie-banner {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: white;
-      color: var(--dark);
-      padding: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 9999;
-      user-select: none;
-      max-width: 1000px;
-      margin: 0 auto;
-      border: 1px solid #eee;
-    }
-    
-    #cookie-banner p {
-      margin: 0;
-      flex: 1 1 300px;
-      color: var(--gray);
-    }
-    
-    #cookie-banner button {
-      background: var(--primary);
-      border: none;
-      color: white;
-      font-weight: 600;
-      border-radius: 50px;
-      padding: 0.8rem 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      flex-shrink: 0;
-      margin-left: 1rem;
-    }
-    
-    #cookie-banner button:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-    
-    /* Responsive */
-    @media (max-width: 992px) {
-      .banner h2 {
-        font-size: 2.5rem;
-      }
-      
-      .banner p {
-        font-size: 1.1rem;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-      }
-      
-      .banner {
-        height: 70vh;
-      }
-      
-      .banner h2 {
-        font-size: 2rem;
-      }
-      
-      .hero-image {
-        width: 95%;
-        margin-top: -2rem;
-      }
-      
-      .form-container {
-        padding: 2rem;
-      }
-    }
-    
-    @media (max-width: 576px) {
-      .banner h2 {
-        font-size: 1.8rem;
-      }
-      
-      .btn {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-      }
-      
-      .section-title h3 {
-        font-size: 1.8rem;
-      }
-      
-      #cookie-banner {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      #cookie-banner button {
-        margin: 1rem 0 0 0;
-        width: 100%;
-      }
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.A. Rent - Transfer Napoli ⇄ Costiera Amalfitana | Noleggio Auto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --primary-dark: #003d7a;
+            --secondary: #FF6B00;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .main-nav a {
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .main-nav a:hover {
+            color: var(--secondary);
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Banner */
+        .hero {
+            position: relative;
+            height: 80vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80') no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Service Highlight */
+        .service-highlight {
+            background: white;
+            padding: 3rem 0;
+            position: relative;
+            z-index: 2;
+            margin-top: -50px;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 2rem;
+            transition: all 0.4s ease;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Transfer Section */
+        .transfer-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 5rem 0;
+        }
+
+        .transfer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .transfer-routes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .route-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .route-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .route-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .route-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .route-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .route-details {
+            margin-top: 1rem;
+        }
+
+        .route-details li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .route-details i {
+            color: var(--secondary);
+            width: 20px;
+        }
+
+        .price-tag {
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* Booking Form */
+        .booking-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .booking-form {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,86,179,0.1);
+            outline: none;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #e05a00;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 3rem 0 1.5rem 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-column a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link.facebook {
+            background: #3b5998;
+        }
+
+        .social-link.instagram {
+            background: linear-gradient(45deg, #405de6, #833ab4);
+        }
+
+        .social-link.whatsapp {
+            background: #25D366;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            margin-top: 2rem;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                height: auto;
+                padding: 5rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .service-highlight {
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .booking-form {
+                padding: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<header>
-  <h1>S.A. Rent</h1>
-  <div id="language-switcher">
-    <button data-lang="it" class="active" aria-label="Lingua italiana">IT</button>
-    <button data-lang="en" aria-label="English language">EN</button>
-  </div>
-</header>
-
-<main>
-  <section class="banner" role="banner" aria-label="Banner principale">
-    <div class="banner-content">
-      <h2 id="banner-slogan">Noleggio auto, moto e trasporto turisti con stile ed eleganza</h2>
-      <p>Servizi premium per clienti esigenti in tutta Italia</p>
-      <a href="#preventivo" class="btn">Richiedi un preventivo</a>
-    </div>
-  </section>
-
-  <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1350&q=80" alt="Auto elegante per noleggio" class="hero-image" />
-
-  <div class="container">
-    <section aria-labelledby="servizi-title">
-      <div class="section-title">
-        <h3 id="servizi-title">I nostri servizi</h3>
-        <p>Offriamo soluzioni di mobilità premium per ogni tua esigenza</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-car"></i>
-          </div>
-          <h4>Noleggio auto</h4>
-          <p class="service-description">Auto premium per ogni esigenza, da city car a berline di lusso, con opzioni di noleggio breve e lungo termine.</p>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/40x40" alt="S.A. Rent Logo">
+                <span class="logo-text">S.A. RENT</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#servizi">Servizi</a></li>
+                    <li><a href="#transfer">Transfer</a></li>
+                    <li><a href="#noleggio">Noleggio</a></li>
+                    <li><a href="#contatti">Contatti</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-motorcycle"></i>
-          </div>
-          <h4>Noleggio moto</h4>
-          <p class="service-description">Moto sportive e tourer per vivere la strada in libertà, con assistenza 24/7 e assicurazione inclusa.</p>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Transfer Privati Napoli ⇄ Costiera Amalfitana</h1>
+            <p>Servizio NCC professionale con autisti locali. Prenota il tuo transfer andata e ritorno con un click!</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#prenota" class="btn btn-secondary">
+                    <i class="fas fa-car"></i> Prenota Transfer
+                </a>
+                <a href="#noleggio" class="btn">
+                    <i class="fas fa-key"></i> Noleggio Auto
+                </a>
+            </div>
         </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-ship"></i>
-          </div>
-          <h4>Noleggio nautica</h4>
-          <p class="service-description">Barche e yacht per vivere il mare in totale relax, con equipaggio opzionale e servizi personalizzati.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-taxi"></i>
-          </div>
-          <h4>NCC con conducente</h4>
-          <p class="service-description">Servizio chauffeur professionale per i tuoi spostamenti, con auto di lusso e massima privacy.</p>
-        </div>
-      </div>
     </section>
 
-    <section id="preventivo" aria-labelledby="preventivo-title">
-      <div class="section-title">
-        <h3 id="preventivo-title">Richiedi un preventivo</h3>
-        <p>Compila il form e ti risponderemo entro 24 ore con la migliore offerta</p>
-      </div>
-      <div class="form-container">
-        <form id="preventivo-form" aria-label="Modulo richiesta preventivo">
-          <div class="form-group">
-            <label for="name" id="label-name">Nome e cognome</label>
-            <input type="text" id="name" name="name" required placeholder="Mario Rossi" />
-          </div>
-
-          <div class="form-group">
-            <label for="email" id="label-email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="tu@email.com" />
-          </div>
-
-          <div class="form-group">
-            <label for="service" id="label-service">Servizio richiesto</label>
-            <select id="service" name="service" required>
-              <option value="" disabled selected>Seleziona un servizio</option>
-              <option value="auto">Noleggio auto</option>
-              <option value="moto">Noleggio moto</option>
-              <option value="nautica">Noleggio nautica</option>
-              <option value="ncc">Noleggio con conducente (NCC)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message" id="label-message">Messaggio</label>
-            <textarea id="message" name="message" rows="4" placeholder="Inserisci dettagli o richieste aggiuntive..."></textarea>
-          </div>
-
-          <button type="submit" class="submit-btn">Invia richiesta</button>
-        </form>
-      </div>
+    <!-- Service Highlight -->
+    <section class="service-highlight">
+        <div class="service-cards">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shuttle-van"></i>
+                </div>
+                <h3>Transfer con Autista</h3>
+                <p>Servizio NCC da/per aeroporti, stazioni e hotel in tutta la Campania</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3>Tour Guidati</h3>
+                <p>Pompei, Vesuvio, Costiera Amalfitana e Sorrento con guide certificate</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-ship"></i>
+                </div>
+                <h3>Escursioni in Barca</h3>
+                <p>Gite a Capri, Positano e Amalfi con partenza dai principali porti</p>
+            </div>
+        </div>
     </section>
 
-    <section class="contacts-section" aria-labelledby="contatti-title">
-      <div class="section-title">
-        <h3 id="contatti-title">Contatti</h3>
-        <p>Siamo a tua disposizione per qualsiasi informazione o richiesta</p>
-      </div>
-      <div class="contacts-container">
-        <div class="contact-info">
-          <h4><i class="fas fa-phone-alt" style="margin-right: 10px;"></i> Contatti diretti</h4>
-          
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-phone-alt"></i>
+    <!-- Transfer Section -->
+    <section class="transfer-section" id="transfer">
+        <div class="transfer-container">
+            <div class="section-title">
+                <h2>Le Nostre Principali Rotte</h2>
+                <p>Servizio disponibile in entrambe le direzioni con autisti professionisti</p>
             </div>
-            <div class="contact-details">
-              <h5>Telefono</h5>
-              <a href="tel:+3908119203046">+39 081 192 03046</a>
+            
+            <div class="transfer-routes">
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <h3>Aeroporto di Napoli</h3>
+                    </div>
+                    <ul class="route-details">
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <strong>Andata:</strong> Napoli → Sorrento (1h15)
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-left"></i>
+                            <strong>Ritorno:</strong> Sorrento → Napoli (1h15)
+                        </li>
+                        <li>
+                            <i class="fas fa-euro-sign"></i>
+                            <strong>Prezzo A/R:</strong> €200 (sconto 10%)
+                        </li>
+                    </ul>
+                    <span class="price-tag">Da €90 (solo andata)</span>
+                </div>
+                
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-icon">
+                            <i class="fas fa-umbrella-beach"></i>
+                        </div>
+                        <h3>Costiera Amalfitana</h3>
+                    </div>
+                    <ul class="route-details">
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <strong>Andata:</strong> Napoli → Positano (1h30)
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-left"></i>
+                            <strong>Ritorno:</strong> Amalfi → Napoli (1h45)
+                        </li>
+                        <li>
+                            <i class="fas fa-euro-sign"></i>
+                            <strong>Prezzo A/R:</strong> €240 (sconto 15%)
+                        </li>
+                    </ul>
+                    <span class="price-tag">Da €120 (solo andata)</span>
+                </div>
+                
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-icon">
+                            <i class="fas fa-monument"></i>
+                        </div>
+                        <h3>Tour Archeologici</h3>
+                    </div>
+                    <ul class="route-details">
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <strong>Andata:</strong> Napoli → Pompei (40min)
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-left"></i>
+                            <strong>Ritorno:</strong> Vesuvio → Napoli (1h)
+                        </li>
+                        <li>
+                            <i class="fas fa-euro-sign"></i>
+                            <strong>Prezzo A/R:</strong> €150 (guida inclusa)
+                        </li>
+                    </ul>
+                    <span class="price-tag">Da €80 (solo andata)</span>
+                </div>
             </div>
-          </div>
-          
-          <div class="contact-item">
-            <div class="contact-icon whatsapp">
-              <i class="fab fa-whatsapp"></i>
-            </div>
-            <div class="contact-details">
-              <h5>WhatsApp</h5>
-              <a href="https://wa.me/393406210835" target="_blank">+39 340 621 0835</a>
-            </div>
-          </div>
-          
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <div class="contact-details">
-              <h5>Email</h5>
-              <a href="mailto:sarent2022@libero.it">sarent2022@libero.it</a>
-            </div>
-          </div>
-          
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-certificate"></i>
-            </div>
-            <div class="contact-details">
-              <h5>PEC</h5>
-              <a href="mailto:disommaclelia@arubapec.it">disommaclelia@arubapec.it</a>
-            </div>
-          </div>
-          
-          <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=100083107430351" class="social-link facebook" target="_blank" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/s.a._rent_/" class="social-link instagram" target="_blank" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/393406210835" class="social-link whatsapp" target="_blank" aria-label="WhatsApp">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-          </div>
         </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="prenota">
+        <div class="booking-container">
+            <div class="section-title">
+                <h2>Prenota il Tuo Transfer</h2>
+                <p>Compila il form per richiedere un preventivo gratuito</p>
+            </div>
+            
+            <div class="booking-form">
+                <form id="transfer-form">
+                    <div class="form-group">
+                        <label for="tipo-servizio">Tipo di Servizio</label>
+                        <select id="tipo-servizio" class="form-control" required>
+                            <option value="" disabled selected>Seleziona...</option>
+                            <option value="solo-andata">Solo Andata</option>
+                            <option value="andata-ritorno">Andata e Ritorno</option>
+                            <option value="tour-guidato">Tour Guidato</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="partenza">Luogo di Partenza</label>
+                        <select id="partenza" class="form-control" required>
+                            <option value="" disabled selected>Seleziona...</option>
+                            <option value="aeroporto-napoli">Aeroporto di Napoli</option>
+                            <option value="stazione-napoli">Stazione Napoli Centrale</option>
+                            <option value="hotel-napoli">Hotel a Napoli</option>
+                            <option value="porto-sorrento">Porto di Sorrento</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="destinazione">Destinazione</label>
+                        <select id="destinazione" class="form-control" required>
+                            <option value="" disabled selected>Seleziona...</option>
+                            <option value="sorrento">Sorrento</option>
+                            <option value="positano">Positano</option>
+                            <option value="amalfi">Amalfi</option>
+                            <option value="pompei">Pompei</option>
+                            <option value="vesuvio">Vesuvio</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="data-partenza">Data e Ora Partenza</label>
+                        <input type="datetime-local" id="data-partenza" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group" id="ritorno-group" style="display: none;">
+                        <label for="data-ritorno">Data e Ora Ritorno</label>
+                        <input type="datetime-local" id="data-ritorno" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="passeggeri">Numero Passeggeri</label>
+                        <select id="passeggeri" class="form-control" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5-8">5-8 (Minivan)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Richiedi Preventivo
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Noleggio Section -->
+    <section class="transfer-section" id="noleggio" style="background: white;">
+        <div class="transfer-container">
+            <div class="section-title">
+                <h2>Noleggio Auto Senza Conducente</h2>
+                <p>Flessibilità totale per esplorare la Costiera a tuo piacimento</p>
+            </div>
+            
+            <div class="transfer-routes">
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>City Car</h3>
+                    </div>
+                    <ul class="route-details">
+                        <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
+                        <li><i class="fas fa-gas-pump"></i> Consumo: 18km/litro</li>
+                        <li><i class="fas fa-euro-sign"></i> Da €50/giorno</li>
+                    </ul>
+                    <span class="price-tag">Assicurazione inclusa</span>
+                </div>
+                
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-icon">
+                            <i class="fas fa-car-side"></i>
+                        </div>
+                        <h3>Berlina Premium</h3>
+                    </div>
+                    <ul class="route-details">
+                        <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
+                        <li><i class="fas fa-gas-pump"></i> Consumo: 12km/litro</li>
+                        <li><i class="fas fa-euro-sign"></i> Da €120/giorno</li>
+                    </ul>
+                    <span class="price-tag">Confort garantito</span>
+                </div>
+                
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-icon">
+                            <i class="fas fa-van-shuttle"></i>
+                        </div>
+                        <h3>Minivan</h3>
+                    </div>
+                    <ul class="route-details">
+                        <li><i class="fas fa-users"></i> Fino a 8 passeggeri</li>
+                        <li><i class="fas fa-gas-pump"></i> Consumo: 10km/litro</li>
+                        <li><i class="fas fa-euro-sign"></i> Da €150/giorno</li>
+                    </ul>
+                    <span class="price-tag">Ideale per gruppi</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contatti">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>S.A. Rent</h3>
+                    <p>Servizi di transfer e noleggio auto per la Costiera Amalfitana dal 2010. Professionalità, comfort e prezzi competitivi.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100083107430351" class="social-link facebook" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/s.a._rent_/" class="social-link instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/393406210835" class="social-link whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contatti</h3>
+                    <ul>
+                        <li>
+                            <a href="tel:+3908119203046">
+                                <i class="fas fa-phone-alt"></i> +39 081 192 03046
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/393406210835">
+                                <i class="fab fa-whatsapp"></i> +39 340 621 0835
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:sarent2022@libero.it">
+                                <i class="fas fa-envelope"></i> sarent2022@libero.it
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-map-marker-alt"></i> Corso Alcide De Gasperi 182, Castellammare di Stabia
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Orari</h3>
+                    <ul>
+                        <li><i class="fas fa-clock"></i> Lun-Ven: 8:00 - 20:00</li>
+                        <li><i class="fas fa-clock"></i> Sab: 8:00 - 18:00</li>
+                        <li><i class="fas fa-clock"></i> Dom: Su prenotazione</li>
+                        <li><i class="fas fa-exclamation-circle"></i> Servizio NCC 24/7</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 S.A. Rent - P.IVA 10014351216 - Tutti i diritti riservati
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/393406210835" class="whatsapp-float" target="_blank" aria-label="Chatta su WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mostra/nascondi campo ritorno in base alla selezione
+        document.getElementById('tipo-servizio').addEventListener('change', function() {
+            const ritornoGroup = document.getElementById('ritorno-group');
+            ritornoGroup.style.display = this.value === 'andata-ritorno' ? 'block' : 'none';
+        });
         
-        <div class="contact-info">
-          <h4><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> La nostra sede</h4>
-          
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-map-marker-alt"></i>
-            </div>
-            <div class="contact-details">
-              <h5>Indirizzo</h5>
-              <p>Corso Alcide De Gasperi 182<br>
-              Castellammare di Stabia (NA) 80053</p>
-            </div>
-          </div>
-          
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-clock"></i>
-            </div>
-            <div class="contact-details">
-              <h5>Orari</h5>
-              <p>Lun-Ven: 9:00 - 19:00<br>
-              Sab: 9:00 - 13:00<br>
-              Dom: Chiuso</p>
-            </div>
-          </div>
-          
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-id-card"></i>
-            </div>
-            <div class="contact-details">
-              <h5>Partita IVA</h5>
-              <p>10014351216</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="map-container">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3027.9663095343008!2d14.486277315405789!3d40.64417997934009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b9f14d8a5a6a5%3A0x7a4e4a9a9a9a9a9a!2sCorso%20Alcide%20De%20Gasperi%2C%20182%2C%2080053%20Castellammare%20di%20Stabia%20NA!5e0!3m2!1sen!2sit!4v1620000000000!5m2!1sen!2sit" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-  </div>
-</main>
-
-<footer>
-  <div class="footer-content">
-    <div class="footer-column">
-      <h4>S.A. Rent</h4>
-      <p>Noleggio auto, moto e servizi NCC con professionalità ed eleganza in tutta Italia.</p>
-      <div class="social-links" style="justify-content: flex-start;">
-        <a href="https://www.facebook.com/profile.php?id=100083107430351" class="social-link facebook" target="_blank" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/s.a._rent_/" class="social-link instagram" target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
-    </div>
-    <div class="footer-column">
-      <h4>Servizi</h4>
-      <ul>
-        <li><a href="#"><i class="fas fa-chevron-right"></i> Noleggio auto</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i> Noleggio moto</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i> Noleggio nautica</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i> NCC con conducente</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>Contatti</h4>
-      <ul>
-        <li><a href="tel:+3908119203046"><i class="fas fa-phone-alt"></i> +39 081 192 03046</a></li>
-        <li><a href="https://wa.me/393406210835"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-        <li><a href="mailto:sarent2022@libero.it"><i class="fas fa-envelope"></i> sarent2022@libero.it</a></li>
-        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Mappa</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="copyright">
-    &copy; 2023 S.A. Rent - P.IVA 10014351216 - Tutti i diritti riservati
-  </div>
-</footer>
-
-<div id="cookie-banner">
-  <p>Questo sito utilizza cookie per migliorare l'esperienza utente. Continuando a navigare, accetti il nostro utilizzo dei cookie.</p>
-  <button id="accept-cookies">Accetta</button>
-</div>
-
-<script>
-  // Cookie banner
-  document.getElementById('accept-cookies').addEventListener('click', function() {
-    document.getElementById('cookie-banner').style.display = 'none';
-    // Qui potresti impostare un cookie per ricordare la scelta dell'utente
-  });
-  
-  // Language switcher (funzionalità base)
-  document.querySelectorAll('#language-switcher button').forEach(button => {
-    button.addEventListener('click', function() {
-      document.querySelector('#language-switcher button.active').classList.remove('active');
-      this.classList.add('active');
-      // Qui potresti implementare il cambio lingua effettivo
-    });
-  });
-  
-  // Form submission
-  document.getElementById('preventivo-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Grazie per la tua richiesta! Ti contatteremo al più presto.');
-    this.reset();
-  });
-</script>
+        // Animazioni al caricamento
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.service-card, .route-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+        });
+        
+        // Smooth scrolling per i link interni
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

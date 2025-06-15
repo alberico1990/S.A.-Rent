@@ -57,10 +57,6 @@
             gap: 10px;
         }
 
-        .logo img {
-            height: 40px;
-        }
-
         .logo-text {
             font-weight: 700;
             font-size: 1.5rem;
@@ -132,23 +128,25 @@
             margin-bottom: 2.5rem;
         }
 
-        /* MODIFICHE ALLA GALLERIA */
+        /* Destination Gallery */
         .destination-gallery {
             padding: 3rem 2rem;
             background: white;
         }
+        
         .gallery-container {
             max-width: 1200px;
             margin: 0 auto;
         }
+        
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(5, minmax(200px, 1fr));
             gap: 1.5rem;
             overflow-x: auto;
             padding-bottom: 10px;
-            width: 100%;
         }
+        
         .destination-card {
             min-width: 200px;
             border-radius: 15px;
@@ -156,14 +154,15 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
             position: relative;
-            flex-shrink: 0;
         }
+        
         .destination-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             display: block;
         }
+        
         .destination-card h3 {
             position: absolute;
             bottom: 0;
@@ -176,11 +175,9 @@
             font-size: 1.2rem;
             text-align: center;
         }
+        
         .destination-card:hover {
             transform: translateY(-5px);
-        }
-        .gallery-grid::-webkit-scrollbar {
-            display: none;
         }
 
         /* Service Highlight */
@@ -227,12 +224,6 @@
             justify-content: center;
             margin: 0 auto 1.5rem;
             font-size: 2rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
         }
 
         /* Transfer Section */
@@ -309,15 +300,6 @@
             font-size: 1.2rem;
         }
 
-        .route-card h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-        }
-
-        .route-details {
-            margin-top: 1rem;
-        }
-
         .route-details li {
             margin-bottom: 0.8rem;
             display: flex;
@@ -340,7 +322,7 @@
             margin-top: 1rem;
         }
 
-        /* Booking Form */
+        /* Booking Section */
         .booking-section {
             padding: 5rem 0;
             background: white;
@@ -417,6 +399,18 @@
             background: #e05a00;
         }
 
+        /* Feedback Message */
+        .feedback-message {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+            border: 1px solid #c3e6cb;
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
@@ -452,14 +446,6 @@
             width: 40px;
             height: 2px;
             background: var(--secondary);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column li {
-            margin-bottom: 0.8rem;
         }
 
         .footer-column a {
@@ -611,11 +597,10 @@
     </style>
 </head>
 <body>
-    <!-- Header con nuovo logo -->
+    <!-- Header -->
     <header>
         <div class="header-container">
             <div class="logo">
-              <!--  <img src="logo.jpeg" alt="S.A. Rent Logo"> -->
                 <span class="logo-text">S.A. RENT Luxury Car Service</span>
             </div>
             <nav class="main-nav">
@@ -646,7 +631,7 @@
         </div>
     </section>
 
-    <!-- NUOVA SEZIONE GALLERIA (5 FOTO IN RIGA) -->
+    <!-- Destination Gallery -->
     <section class="destination-gallery">
         <div class="gallery-container">
             <div class="gallery-grid">
@@ -726,7 +711,7 @@
                             <i class="fas fa-arrow-left"></i>
                             <strong>Ritorno:</strong> Sorrento → Napoli (1h15)
                         </li>
-                   
+                    </ul>
                 </div>
                 
                 <div class="route-card">
@@ -745,8 +730,7 @@
                             <i class="fas fa-arrow-left"></i>
                             <strong>Ritorno:</strong> Amalfi → Napoli (1h45)
                         </li>
-                       
-                   
+                    </ul>
                 </div>
                 
                 <div class="route-card">
@@ -765,8 +749,7 @@
                             <i class="fas fa-arrow-left"></i>
                             <strong>Ritorno:</strong> Vesuvio → Napoli (1h)
                         </li>
-                       
-                   
+                    </ul>
                 </div>
             </div>
         </div>
@@ -782,9 +765,11 @@
             
             <div class="booking-form">
                 <form id="transfer-form">
+                    <input type="hidden" name="_subject" value="Richiesta preventivo da S.A. Rent">
+                    
                     <div class="form-group">
                         <label for="tipo-servizio">Tipo di Servizio</label>
-                        <select id="tipo-servizio" class="form-control" required>
+                        <select id="tipo-servizio" name="tipo-servizio" class="form-control" required>
                             <option value="" disabled selected>Seleziona...</option>
                             <option value="solo-andata">Solo Andata</option>
                             <option value="andata-ritorno">Andata e Ritorno</option>
@@ -794,7 +779,7 @@
                     
                     <div class="form-group">
                         <label for="partenza">Luogo di Partenza</label>
-                        <select id="partenza" class="form-control" required>
+                        <select id="partenza" name="partenza" class="form-control" required>
                             <option value="" disabled selected>Seleziona...</option>
                             <option value="aeroporto-napoli">Aeroporto di Napoli</option>
                             <option value="stazione-napoli">Stazione Napoli Centrale</option>
@@ -805,7 +790,7 @@
                     
                     <div class="form-group">
                         <label for="destinazione">Destinazione</label>
-                        <select id="destinazione" class="form-control" required>
+                        <select id="destinazione" name="destinazione" class="form-control" required>
                             <option value="" disabled selected>Seleziona...</option>
                             <option value="sorrento">Sorrento</option>
                             <option value="positano">Positano</option>
@@ -817,17 +802,17 @@
                     
                     <div class="form-group">
                         <label for="data-partenza">Data e Ora Partenza</label>
-                        <input type="datetime-local" id="data-partenza" class="form-control" required>
+                        <input type="datetime-local" id="data-partenza" name="data-partenza" class="form-control" required>
                     </div>
                     
                     <div class="form-group" id="ritorno-group" style="display: none;">
                         <label for="data-ritorno">Data e Ora Ritorno</label>
-                        <input type="datetime-local" id="data-ritorno" class="form-control">
+                        <input type="datetime-local" id="data-ritorno" name="data-ritorno" class="form-control">
                     </div>
                     
                     <div class="form-group">
                         <label for="passeggeri">Numero Passeggeri</label>
-                        <select id="passeggeri" class="form-control" required>
+                        <select id="passeggeri" name="passeggeri" class="form-control" required>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -840,6 +825,9 @@
                         <i class="fas fa-paper-plane"></i> Richiedi Preventivo
                     </button>
                 </form>
+                <div id="feedback-message" class="feedback-message">
+                    <i class="fas fa-check-circle"></i> Grazie! Ti risponderemo a breve.
+                </div>
             </div>
         </div>
     </section>
@@ -901,31 +889,31 @@
         </div>
     </section>
 
-<!-- MODIFICATO: Sezione Mappa con indirizzo preciso e pulsante -->
-<section class="map-section" style="padding: 0; background: var(--light);">
-    <div class="section-title" style="padding-top: 3rem;">
-        <h2>Dove Trovarci</h2>
-        <p>La nostra sede a Castellammare di Stabia</p>
-    </div>
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 3rem; text-align: center;">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1207.689012154597!2d14.4765623!3d40.694954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133baf1c7d0809a9%3A0xec08b4e0bdaa4b2e!2sCorso%20Alcide%20De%20Gasperi%2C%20182%2C%2080013%20Castellammare%20di%20Stabia%20NA!5e0!3m2!1sen!2sit!4v1620000000000!5m2!1sen!2sit" 
-            width="100%" 
-            height="400" 
-            style="border:0; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" 
-            allowfullscreen="" 
-            loading="lazy">
-        </iframe>
-        <div style="margin-top: 1.5rem;">
-            <a href="https://www.google.com/maps/dir//Corso+Alcide+De+Gasperi,+182,+80013+Castellammare+di+Stabia+NA/@40.694954,14.4765623,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x133baf1c7d0809a9:0xec08b4e0bdaa4b2e!2m2!1d14.4765623!2d40.694954?entry=ttu" 
-               class="btn btn-secondary" 
-               target="_blank"
-               style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                <i class="fas fa-directions"></i> Indicazioni stradali
-            </a>
+    <!-- Map Section -->
+    <section class="map-section" style="padding: 0; background: var(--light);">
+        <div class="section-title" style="padding-top: 3rem;">
+            <h2>Dove Trovarci</h2>
+            <p>La nostra sede a Castellammare di Stabia</p>
         </div>
-    </div>
-</section>
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 3rem; text-align: center;">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1207.689012154597!2d14.4765623!3d40.694954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133baf1c7d0809a9%3A0xec08b4e0bdaa4b2e!2sCorso%20Alcide%20De%20Gasperi%2C%20182%2C%2080013%20Castellammare%20di%20Stabia%20NA!5e0!3m2!1sen!2sit!4v1620000000000!5m2!1sen!2sit" 
+                width="100%" 
+                height="400" 
+                style="border:0; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+            <div style="margin-top: 1.5rem;">
+                <a href="https://www.google.com/maps/dir//Corso+Alcide+De+Gasperi,+182,+80013+Castellammare+di+Stabia+NA/@40.694954,14.4765623,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x133baf1c7d0809a9:0xec08b4e0bdaa4b2e!2m2!1d14.4765623!2d40.694954?entry=ttu" 
+                   class="btn btn-secondary" 
+                   target="_blank"
+                   style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-directions"></i> Indicazioni stradali
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer id="contatti">
@@ -996,14 +984,57 @@
     </a>
 
     <script>
-        // Mostra/nascondi campo ritorno in base alla selezione
+        // Mostra/nascondi campo ritorno
         document.getElementById('tipo-servizio').addEventListener('change', function() {
-            const ritornoGroup = document.getElementById('ritorno-group');
-            ritornoGroup.style.display = this.value === 'andata-ritorno' ? 'block' : 'none';
+            document.getElementById('ritorno-group').style.display = 
+                this.value === 'andata-ritorno' ? 'block' : 'none';
         });
-        
+
+        // Gestione form
+        document.getElementById('transfer-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const feedback = document.getElementById('feedback-message');
+            
+            try {
+                // Invia a Formspree
+                const response = await fetch('https://formspree.io/f/albericodap@gmail.com', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Mostra feedback positivo
+                    feedback.style.display = 'block';
+                    form.reset();
+                    
+                    // Nascondi dopo 5 secondi
+                    setTimeout(() => {
+                        feedback.style.display = 'none';
+                    }, 5000);
+                } else {
+                    // Fallback a mailto
+                    const mailtoBody = `Servizio: ${form['tipo-servizio'].value}\n` +
+                                      `Partenza: ${form['partenza'].value}\n` +
+                                      `Destinazione: ${form['destinazione'].value}\n` +
+                                      `Data: ${form['data-partenza'].value}\n` +
+                                      `Passeggeri: ${form['passeggeri'].value}`;
+                    
+                    window.location.href = `mailto:albericodap@gmail.com?subject=Richiesta preventivo&body=${encodeURIComponent(mailtoBody)}`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert("Errore nell'invio. Contattaci via WhatsApp al +39 340 621 0835");
+            }
+        });
+
         // Animazioni al caricamento
-        document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.service-card, .route-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
@@ -1012,8 +1043,8 @@
                 }, 150 * index);
             });
         });
-        
-        // Smooth scrolling per i link interni
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();

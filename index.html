@@ -667,7 +667,7 @@
                     <i class="fas fa-shuttle-van"></i>
                 </div>
                 <h3>Transfer con Autista</h3>
-                <p>Servizio NCC da/per aeroporti, stazioni e hotel in tutta la Campania</p>
+                <p>Servizio NCC da/per aeroporti, stazioni e hotel in tutta Italia</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
@@ -820,6 +820,23 @@
                             <option value="5-8">5-8 (Minivan)</option>
                         </select>
                     </div>
+ 
+                                                      <div class="form-group">
+    <label for="bagagli">Numero Bagagli</label>
+    <select id="bagagli" name="bagagli" class="form-control" required>
+        <option value="" disabled selected>Seleziona...</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10+</option>
+    </select>
+</div>
                     
                     <button type="submit" class="btn btn-secondary" style="width: 100%;">
                         <i class="fas fa-paper-plane"></i> Richiedi Preventivo
@@ -1000,7 +1017,7 @@
             
             try {
                 // Invia a Formspree
-                const response = await fetch('https://formspree.io/f/albericodap@gmail.com', {
+                const response = await fetch('https://formspree.io/f/SARENT2022@LIBERO.IT', {
                     method: 'POST',
                     body: formData,
                     headers: {
@@ -1024,8 +1041,9 @@
                                       `Destinazione: ${form['destinazione'].value}\n` +
                                       `Data: ${form['data-partenza'].value}\n` +
                                       `Passeggeri: ${form['passeggeri'].value}`;
+                                      `Bagagli: ${form['bagagli'].value}`;
                     
-                    window.location.href = `mailto:albericodap@gmail.com?subject=Richiesta preventivo&body=${encodeURIComponent(mailtoBody)}`;
+                    window.location.href = `mailto:sarent2022@libero.it?subject=Richiesta preventivo&body=${encodeURIComponent(mailtoBody)}`;
                 }
             } catch (error) {
                 console.error('Error:', error);

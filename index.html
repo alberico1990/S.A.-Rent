@@ -837,6 +837,15 @@
         <option value="10">10+</option>
     </select>
 </div>
+<div class="form-group">
+    <label for="note">Note aggiuntive</label>
+    <textarea 
+        id="note" 
+        name="note" 
+        class="form-control" 
+        rows="3" 
+        placeholder="Specifica eventuali richieste"></textarea>
+</div>
                     
                     <button type="submit" class="btn btn-secondary" style="width: 100%;">
                         <i class="fas fa-paper-plane"></i> Richiedi Preventivo
@@ -1042,6 +1051,7 @@
                                       `Data: ${form['data-partenza'].value}\n` +
                                       `Passeggeri: ${form['passeggeri'].value}`;
                                       `Bagagli: ${form['bagagli'].value}`;
+                                      `Note: ${form['note'].value || 'Nessuna nota'}`;
                     
                     window.location.href = `mailto:sarent2022@libero.it?subject=Richiesta preventivo&body=${encodeURIComponent(mailtoBody)}`;
                 }

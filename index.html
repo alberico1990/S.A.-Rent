@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0L6KXBBE5D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0L6KXBBE5D');
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.A. Rent - Transfer Napoli ⇄ Costiera Amalfitana | Noleggio Auto</title>
@@ -679,6 +689,16 @@
                     <li><a href="#recensioni">Recensioni</a></li>
 <li><a href="#contatti">Contatti</a></li>
 <li><a href="galleria.html">Galleria</a></li>
+<div style="position: fixed; top: 10px; right: 10px; z-index: 999; display: flex; gap: 12px; font-family: Arial, sans-serif; font-size: 14px;">
+  <a href="index.html" title="Italiano" style="text-decoration: none; color: white; display: flex; align-items: center; gap: 6px;">
+    <img src="https://flagcdn.com/w20/it.png" alt="IT" style="width: 20px; height: auto;"> Italiano
+  </a>
+  <a href="index_en.html" title="English" style="text-decoration: none; color: white; display: flex; align-items: center; gap: 6px;">
+    <img src="https://flagcdn.com/w20/gb.png" alt="EN" style="width: 20px; height: auto;"> English
+  </a>
+</div>
+
+
 
                 </ul>
             </nav>
@@ -1325,6 +1345,24 @@
         );
     }
 </script>
+
+<div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background: #222; color: white; padding: 15px; display: none; z-index: 9999; text-align: center; font-size: 14px;">
+  Questo sito utilizza cookie per migliorare l'esperienza. <button onclick="acceptCookies()" style="margin-left: 10px; padding: 6px 12px; background: #4CAF50; color: white; border: none; cursor: pointer;">Accetta</button>
+</div>
+
+<script>
+  function acceptCookies() {
+    localStorage.setItem("cookieAccepted", "yes");
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+
+  window.onload = function () {
+    if (!localStorage.getItem("cookieAccepted")) {
+      document.getElementById("cookie-banner").style.display = "block";
+    }
+  };
+</script>
+
 
     
 </body>

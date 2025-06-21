@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galleria Fotografica</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet"/>
+
+  <!-- Lightbox CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" rel="stylesheet"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom right, #fafafa, #eaeaea);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 60px 20px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      margin: 0;
+      animation: slideDown 1s ease-out;
+    }
+
+    header p.typing {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid white;
+      width: 0;
+      animation: typing 3.5s steps(40, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .galleria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .foto {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transform: scale(1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .foto:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .foto img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: filter 0.3s;
+    }
+
+    .foto:hover img {
+      filter: brightness(80%);
+    }
+
+    .descrizione {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .back-home {
+      text-align: center;
+      margin: 30px;
+    }
+
+    .back-home a {
+      background: #1e3c72;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .back-home a:hover {
+      background: #2a5298;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p.typing {
+        font-size: 1rem;
+      }
+
+      .descrizione {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>La Mia Galleria</h1>
+    <p class="typing">Ogni scatto racconta una storia...</p>
+  </header>
+
+  <section class="galleria">
+    <!-- 11 immagini -->
+    <!-- Puoi duplicare o modificare le descrizioni -->
+    <div class="foto">
+      <a href="galleria2/foto1.jpeg" data-lightbox="galleria" data-title="Foto 1">
+        <img src="galleria2/foto1.jpeg" alt="Foto 1">
+        <div class="descrizione">Foto 1</div>
+      </a>
+    </div>
+    <div class="foto">
+      <a href="galleria2/foto2.jpeg" data-lightbox="galleria" data-title="Foto 2">
+        <img src="galleria2/foto2.jpeg" alt="Foto 2">
+        <div class="descrizione">Foto 2</div>
+      </a>
+    </div>
+    <div class="foto">
+      <a href="galleria2/foto3.jpeg" data-lightbox="galleria" data-title="Foto 3">
+        <img src="galleria2/foto3.jpeg" alt="Foto 3">
+        <div class="descrizione">Foto 3</div>
+      </a>
+    </div>
+    <div class="foto">
+      <a href="galleria2/foto4.jpeg" data-lightbox="galleria" data-title="Foto 4">
+        <img src="galleria2/foto4.jpeg" alt="Foto 4">
+        <div class="descrizione">Foto 4</div>
+      </a>
+    </div>
+    <div class="foto">
+      <a href="galleria2/foto5.jpeg" data-lightbox="galleria" data-title="Foto 5">
+        <img src="galleria2/foto5.jpeg" alt="Foto 5">
+        <div class="descrizione">Foto 5</div>
+      </a>
+    </div>
+    <div class="foto">
+      <a href="galleria2/foto6.jpeg" data-lightbox="galleria" data-title="Foto 6">
+        <img src="galleria2/foto6.jpeg" alt="Foto 6">
+        <div class="descrizione">Foto 6</div>
+      </a>
+    </div>
+    <div class="foto">
+      <a href="galleria2/foto7.jpeg" data-lightbox="galleria" data-title="Foto 7">
+        <img src="galleria2/foto7.jpeg" alt="Foto 7">
+        <div class="descrizione">Foto 7</div>
+      </a>
+    </div>
+    <div class="foto">
+      <a href="galleria2/foto8.jpeg" data-lightbox="galleria" data-title="Foto 8">
+        <img src="galleria2/foto8.jpeg" alt="Foto 8">
+        <div class="descrizione">Foto 8</div>
+      </a>
+    </div>
+    <div class="foto">
+      <a href="galleria2/foto9.jpeg" data-lightbox="galleria" data-title="Foto 9">
+        <img src="galleria2/foto9.jpeg" alt="Foto 9">
+        <div class="descrizione">Foto 9</div>
+      </a>
+    </div>
+    <div class="foto">
+      <a href="galleria2/foto10.jpeg" data-lightbox="galleria" data-title="Foto 10">
+        <img src="galleria2/foto10.jpeg" alt="Foto 10">
+        <div class="descrizione">Foto 10</div>
+      </a>
+    </div>
+    <div class="foto">
+      <a href="galleria2/foto11.jpeg" data-lightbox="galleria" data-title="Foto 11">
+        <img src="galleria2/foto11.jpeg" alt="Foto 11">
+        <div class="descrizione">Foto 11</div>
+      </a>
+    </div>
+  </section>
+
+  <div class="back-home">
+    <a href="index.html">🏠 Torna alla Home</a>
+  </div>
+
+  <!-- Lightbox JS -->
+  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js"></script>
+</body>
+</html>

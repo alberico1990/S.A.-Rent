@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0L6KXBBE5D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-0L6KXBBE5D');
-</script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0L6KXBBE5D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0L6KXBBE5D');
+    </script>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>S.A. Rent - Naples ⇄ Amalfi Coast Transfers | Car Rental</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -30,65 +30,76 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             background: #f8f9fa;
             color: var(--dark);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
+            text-size-adjust: 100%;
         }
 
         /* Header */
         header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1rem;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .header-container {
-            max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            flex-wrap: wrap;
         }
 
         .logo {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
+            text-align: center;
+            margin-bottom: 0.5rem;
         }
 
         .logo-text {
             font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        #logo-subtitle {
+            font-size: 0.7rem;
+            font-weight: 400;
+            margin-top: 0.3rem;
+            display: none;
         }
 
         /* Navigation */
         .main-nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 0.5rem 0;
         }
 
         .main-nav a {
             color: white;
             font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            padding: 0.3rem 0;
             position: relative;
-        }
-
-        .main-nav a:hover {
-            color: var(--secondary);
+            white-space: nowrap;
         }
 
         .main-nav a::after {
@@ -97,7 +108,7 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 1px;
             background: var(--secondary);
             transition: width 0.3s ease;
         }
@@ -109,65 +120,80 @@
         /* Hero Banner */
         .hero {
             position: relative;
-            height: 80vh;
-            min-height: 600px;
+            height: auto;
+            min-height: 70vh;
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('castellammare2.jpg') no-repeat center/cover;
             display: flex;
             align-items: center;
             color: white;
             text-align: center;
-            padding: 0 2rem;
+            padding: 2rem 1rem;
         }
 
         .hero-content {
+            width: 100%;
             max-width: 800px;
             margin: 0 auto;
-            animation: fadeInUp 1s ease-out;
+            padding-top: 1rem;
         }
 
         .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Game Promo */
+        .game-promo {
+            background: linear-gradient(135deg, var(--secondary), #FF8C00);
+            padding: 1rem;
+            text-align: center;
+            color: white;
+        }
+
+        .game-promo h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
         }
 
         /* Destination Gallery */
         .destination-gallery {
-            padding: 3rem 2rem;
+            padding: 1.5rem 1rem;
             background: white;
         }
         
         .gallery-container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
         }
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(5, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(3, minmax(120px, 1fr));
+            gap: 0.8rem;
             overflow-x: auto;
-            padding-bottom: 10px;
+            padding-bottom: 5px;
         }
         
         .destination-card {
-            min-width: 200px;
-            border-radius: 15px;
+            min-width: 120px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
             position: relative;
         }
         
         .destination-card img {
             width: 100%;
-            height: 200px;
+            height: 120px;
             object-fit: cover;
             display: block;
         }
@@ -179,82 +205,72 @@
             right: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
             color: white;
-            padding: 1rem;
+            padding: 0.5rem;
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             text-align: center;
-        }
-        
-        .destination-card:hover {
-            transform: translateY(-5px);
         }
 
         /* Service Highlight */
         .service-highlight {
             background: white;
             padding: 3rem 0;
-            position: relative;
-            z-index: 2;
-            margin-top: -50px;
         }
 
         .service-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .service-card {
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            padding: 2rem;
-            transition: all 0.4s ease;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
             text-align: center;
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
         .service-icon {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
         }
 
         /* Transfer Section */
         .transfer-section {
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 5rem 0;
+            padding: 3rem 0;
         }
 
         .transfer-container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .section-title h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
             color: var(--primary);
             position: relative;
             display: inline-block;
@@ -263,108 +279,112 @@
         .section-title h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: var(--secondary);
             border-radius: 2px;
         }
 
+        .section-title p {
+            font-size: 0.95rem;
+        }
+
         .transfer-routes {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
         .route-card {
             background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
-        }
-
-        .route-card:hover {
-            transform: translateY(-5px);
         }
 
         .route-header {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .route-icon {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .route-details li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.9rem;
         }
 
         .route-details i {
             color: var(--secondary);
-            width: 20px;
+            width: 18px;
         }
 
         .price-tag {
             background: var(--secondary);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 50px;
             font-weight: 600;
             display: inline-block;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
         }
 
         /* Booking Section */
         .booking-section {
-            padding: 5rem 0;
+            padding: 3rem 0;
             background: white;
         }
 
         .booking-container {
+            width: 100%;
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .booking-form {
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            padding: 3rem;
-            margin-top: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            margin-top: 1rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
             color: var(--primary);
+            font-size: 0.9rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 8px;
             border: 1px solid #ddd;
             font-size: 1rem;
@@ -378,26 +398,87 @@
             outline: none;
         }
 
+        /* Reviews Section */
+        .reviews-section {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, var(--light), #e9ecef);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .review-stars {
+            color: var(--secondary);
+            margin-top: 0.2rem;
+        }
+
+        .review-content p {
+            font-style: italic;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .review-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 0.8rem;
+        }
+
+        /* Buttons */
         .btn {
             display: inline-block;
             background: var(--primary);
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-align: center;
+            min-width: 44px;
+            min-height: 44px;
         }
 
         .btn:hover {
             background: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .btn-secondary {
@@ -412,39 +493,45 @@
         .feedback-message {
             display: none;
             text-align: center;
-            padding: 1rem;
-            margin-top: 1.5rem;
+            padding: 0.8rem;
+            margin-top: 1rem;
             background: #d4edda;
             color: #155724;
             border-radius: 5px;
             border: 1px solid #c3e6cb;
+            font-size: 0.9rem;
         }
 
         /* Footer */
         footer {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: white;
-            padding: 3rem 0 1.5rem 0;
+            padding: 2rem 0 1rem;
         }
 
         .footer-container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column {
+            margin-bottom: 1.5rem;
         }
 
         .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
             position: relative;
-            padding-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
         }
 
         .footer-column h3::after {
@@ -452,9 +539,15 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 40px;
+            width: 30px;
             height: 2px;
             background: var(--secondary);
+        }
+
+        .footer-column p, 
+        .footer-column li {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
         }
 
         .footer-column a {
@@ -463,6 +556,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.85rem;
         }
 
         .footer-column a:hover {
@@ -472,19 +566,19 @@
 
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: 0.8rem;
+            margin-top: 1rem;
         }
 
         .social-link {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
 
@@ -500,234 +594,233 @@
             background: #25D366;
         }
 
-        .social-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
         .copyright {
             text-align: center;
-            padding-top: 1.5rem;
+            padding-top: 1rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: rgba(255,255,255,0.7);
-            margin-top: 2rem;
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
         }
 
         /* WhatsApp Float Button */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 15px;
             background: #25D366;
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+            font-size: 1.5rem;
+            box-shadow: 0 3px 15px rgba(37, 211, 102, 0.3);
             z-index: 999;
             transition: all 0.3s ease;
         }
 
         .whatsapp-float:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            position: fixed;
+            top: 5px;
+            right: 5px;
+            z-index: 9999;
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-selector a {
+            background: #0056b3;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #222;
+            color: white;
+            padding: 12px;
+            display: none;
+            z-index: 9999;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        #cookie-banner button {
+            margin-left: 8px;
+            padding: 5px 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
         }
 
         /* Responsive */
-        @media (max-width: 992px) {
+        @media (min-width: 400px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, minmax(120px, 1fr));
+            }
+        }
+
+        @media (min-width: 576px) {
+            .header-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                align-items: flex-start;
+                text-align: left;
+                margin-bottom: 0;
+            }
+            
+            #logo-subtitle {
+                display: block;
+            }
+            
+            .main-nav ul {
+                justify-content: flex-end;
+            }
+            
+            .service-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .transfer-routes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .reviews-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
             .hero h1 {
-                font-size: 2.3rem;
+                font-size: 2.2rem;
             }
             
             .hero p {
                 font-size: 1.1rem;
             }
-        }
-
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
+            
+            .service-cards {
+                grid-template-columns: repeat(3, 1fr);
             }
             
-            .main-nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero {
-                height: auto;
-                padding: 5rem 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .service-highlight {
-                margin-top: 0;
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
+        @media (min-width: 992px) {
+            .header-container, 
+            .gallery-container, 
+            .transfer-container, 
+            .booking-container,
+            .footer-container {
+                max-width: 1200px;
+                margin: 0 auto;
             }
             
-            .btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-            
-            .booking-form {
-                padding: 2rem;
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
-/* Reviews Section */
-.reviews-section {
-    padding: 5rem 0;
-    background: linear-gradient(135deg, var(--light), #e9ecef);
-    position: relative;
-    overflow: hidden;
-}
 
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.review-card {
-    background: white;
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.review-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-}
-
-.review-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.reviewer-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--primary);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-right: 1rem;
-}
-
-.review-stars {
-    color: var(--secondary);
-    margin-top: 0.3rem;
-}
-
-.review-content p {
-    font-style: italic;
-    color: var(--gray);
-}
-
-.review-date {
-    font-size: 0.9rem;
-    color: var(--gray);
-    margin-top: 1rem;
-}
-
-/* Animation for review cards */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        /* Animation for review cards */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-<div style="position:fixed;top:10px;right:10px;z-index:9999;display:flex;gap:10px;">
-  <a href="index.html" style="background:#0056b3;color:white;padding:5px 10px;border-radius:5px;">
-    <img src="https://flagcdn.com/w20/it.png" width="20"> IT
-  </a>
-  <a href="index_en.html" style="background:#0056b3;color:white;padding:5px 10px;border-radius:5px;">
-    <img src="https://flagcdn.com/w20/gb.png" width="20"> EN
-  </a>
-</div>
+        <div class="lang-selector">
+            <a href="index.html">
+                <img src="https://flagcdn.com/w20/it.png" width="15"> IT
+            </a>
+            <a href="index_en.html">
+                <img src="https://flagcdn.com/w20/gb.png" width="15"> EN
+            </a>
+        </div>
+        
         <div class="header-container">
             <div class="logo">
                 <span class="logo-text">S.A. RENT Luxury Car Service</span>
-                <span class="logo-text" id="logo-subtitle">Excellence in luxury transfers and tours throughout Italy</span>
+                <span class="logo-text" id="logo-subtitle">Excellence in luxury transfers and tours</span>
             </div>
             <nav class="main-nav">
                 <ul>
                     <li><a id="nav-home" href="#home">Home</a></li>
-                    <li><a id="nav-servizi" href="#servizi">Services</a></li>
-                    <li><a id="nav-transfer" href="#transfer">Transfers</a></li>
-                    <li><a id="nav-noleggio" href="#noleggio">Car Rental</a></li>
-                    <li><a id="nav-recensioni" href="#recensioni">Reviews</a></li>
-                    <li><a id="nav-contatti" href="#contatti">Contact</a></li>
-                    <li><a id="nav-galleria" href="galleria.html">Gallery</a></li>
-                    <li>
-                        <a href="index.html" title="Italian" style="text-decoration: none; color: white; display: flex; align-items: center; gap: 6px;">
-                            <img src="https://flagcdn.com/w20/it.png" alt="IT" style="width: 20px; height: auto;"> Italian
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index_en.html" title="English" style="text-decoration: none; color: white; display: flex; align-items: center; gap: 6px;">
-                            <img src="https://flagcdn.com/w20/gb.png" alt="EN" style="width: 20px; height: auto;"> English
-                        </a>
-                    </li>
+                    <li><a id="nav-services" href="#services">Services</a></li>
+                    <li><a id="nav-transfers" href="#transfers">Transfers</a></li>
+                    <li><a id="nav-rental" href="#rental">Car Rental</a></li>
+                    <li><a id="nav-reviews" href="#reviews">Reviews</a></li>
+                    <li><a id="nav-contacts" href="#contacts">Contacts</a></li>
+                    <li><a id="nav-gallery" href="gallery.html">Gallery</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- Game Promo -->
+    <section class="game-promo">
+        <h3>Discover our games! 🎁</h3>
+        <a href="games.html" class="btn" style="background: white; color: var(--secondary); font-weight: bold;">
+            <i class="fas fa-gamepad"></i> Play now
+        </a>
+    </section>
+
     <!-- Hero Banner -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Private Transfers Naples ⇄ Amalfi Coast</h1>
-            <p>Professional chauffeur service with local drivers. Book your round-trip transfer with one click!</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#prenota" class="btn btn-secondary">
+            <p>Professional NCC service with local drivers. Book your round trip transfer with one click!</p>
+            <div style="display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#book" class="btn btn-secondary">
                     <i class="fas fa-car"></i> Book Transfer
                 </a>
-                <a href="#noleggio" class="btn">
-                    <i class="fas fa-key"></i> Rent a Car
+                <a href="#rental" class="btn">
+                    <i class="fas fa-key"></i> Car Rental
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="servizi" class="service-highlight" style="margin-top: 0; padding: 5rem 0;">
+    <!-- Service Highlight -->
+    <section id="services" class="service-highlight">
         <div class="transfer-container">
             <div class="section-title">
                 <h2>Our Main Services</h2>
@@ -740,8 +833,8 @@
                         <i class="fas fa-shuttle-van"></i>
                     </div>
                     <h3>Private Transfers</h3>
-                    <p>Professional chauffeur service for airports, ports and hotels throughout Campania</p>
-                    <a href="#prenota" class="btn" style="margin-top: 1rem; padding: 0.5rem 1.5rem;">Book Now</a>
+                    <p>NCC service with professional drivers for airports, ports and hotels throughout Campania</p>
+                    <a href="#book" class="btn" style="margin-top: 1rem; padding: 0.5rem 1rem;">Book</a>
                 </div>
                 
                 <!-- Card 2: Tour -->
@@ -751,7 +844,7 @@
                     </div>
                     <h3>Guided Tours</h3>
                     <p>Customized experiences in Pompeii, Amalfi Coast and archaeological sites</p>
-                    <a href="#transfer" class="btn" style="margin-top: 1rem; padding: 0.5rem 1.5rem;">Discover</a>
+                    <a href="#transfers" class="btn" style="margin-top: 1rem; padding: 0.5rem 1rem;">Discover</a>
                 </div>
                 
                 <!-- Card 3: Rental -->
@@ -760,8 +853,8 @@
                         <i class="fas fa-car"></i>
                     </div>
                     <h3>Car Rental</h3>
-                    <p>Complete flexibility with modern and comfortable vehicles to explore the region</p>
-                    <a href="#noleggio" class="btn" style="margin-top: 1rem; padding: 0.5rem 1.5rem;">Choose</a>
+                    <p>Total flexibility with modern and comfortable cars to explore the region</p>
+                    <a href="#rental" class="btn" style="margin-top: 1rem; padding: 0.5rem 1rem;">Choose</a>
                 </div>
             </div>
         </div>
@@ -795,35 +888,8 @@
         </div>
     </section>
 
-    <!-- Service Highlight -->
-    <section class="service-highlight">
-        <div class="service-cards">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-shuttle-van"></i>
-                </div>
-                <h3>Chauffeur Transfers</h3>
-                <p>NCC service to/from airports, stations and hotels throughout Italy</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-route"></i>
-                </div>
-                <h3>Guided Tours</h3>
-                <p>Pompeii, Vesuvius, Amalfi Coast and Sorrento with certified guides</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-ship"></i>
-                </div>
-                <h3>Boat Excursions</h3>
-                <p>Trips to Capri, Positano and Amalfi departing from main ports</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Transfer Section -->
-    <section class="transfer-section" id="transfer">
+    <section class="transfer-section" id="transfers">
         <div class="transfer-container">
             <div class="section-title">
                 <h2>Our Main Routes</h2>
@@ -892,7 +958,7 @@
     </section>
 
     <!-- Booking Section -->
-    <section class="booking-section" id="prenota">
+    <section class="booking-section" id="book">
         <div class="booking-container">
             <div class="section-title">
                 <h2>Book Your Transfer</h2>
@@ -901,54 +967,54 @@
             
             <div class="booking-form">
                 <form id="transfer-form">
-                    <input type="hidden" name="_subject" value="Transfer request from S.A. Rent">
+                    <input type="hidden" name="_subject" value="Quote request from S.A. Rent">
                     
                     <div class="form-group">
-                        <label for="tipo-servizio">Service Type</label>
-                        <select id="tipo-servizio" name="tipo-servizio" class="form-control" required>
+                        <label for="service-type">Service Type</label>
+                        <select id="service-type" name="service-type" class="form-control" required>
                             <option value="" disabled selected>Select...</option>
-                            <option value="solo-andata">One Way</option>
-                            <option value="andata-ritorno">Round Trip</option>
-                            <option value="tour-guidato">Guided Tour</option>
+                            <option value="one-way">One Way</option>
+                            <option value="round-trip">Round Trip</option>
+                            <option value="guided-tour">Guided Tour</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="partenza">Departure Location</label>
-                        <select id="partenza" name="partenza" class="form-control" required>
+                        <label for="departure">Departure Location</label>
+                        <select id="departure" name="departure" class="form-control" required>
                             <option value="" disabled selected>Select...</option>
-                            <option value="aeroporto-napoli">Naples Airport</option>
-                            <option value="stazione-napoli">Naples Central Station</option>
-                            <option value="hotel-napoli">Hotel in Naples</option>
-                            <option value="porto-sorrento">Sorrento Port</option>
+                            <option value="naples-airport">Naples Airport</option>
+                            <option value="naples-central-station">Naples Central Station</option>
+                            <option value="naples-hotel">Hotel in Naples</option>
+                            <option value="sorrento-port">Sorrento Port</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="destinazione">Destination</label>
-                        <select id="destinazione" name="destinazione" class="form-control" required>
+                        <label for="destination">Destination</label>
+                        <select id="destination" name="destination" class="form-control" required>
                             <option value="" disabled selected>Select...</option>
                             <option value="sorrento">Sorrento</option>
                             <option value="positano">Positano</option>
                             <option value="amalfi">Amalfi</option>
-                            <option value="pompei">Pompeii</option>
-                            <option value="vesuvio">Vesuvius</option>
+                            <option value="pompeii">Pompeii</option>
+                            <option value="vesuvius">Vesuvius</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="data-partenza">Departure Date and Time</label>
-                        <input type="datetime-local" id="data-partenza" name="data-partenza" class="form-control" required>
+                        <label for="departure-date">Departure Date and Time</label>
+                        <input type="datetime-local" id="departure-date" name="departure-date" class="form-control" required>
                     </div>
                     
-                    <div class="form-group" id="ritorno-group" style="display: none;">
-                        <label for="data-ritorno">Return Date and Time</label>
-                        <input type="datetime-local" id="data-ritorno" name="data-ritorno" class="form-control">
+                    <div class="form-group" id="return-group" style="display: none;">
+                        <label for="return-date">Return Date and Time</label>
+                        <input type="datetime-local" id="return-date" name="return-date" class="form-control">
                     </div>
                     
                     <div class="form-group">
-                        <label for="passeggeri">Number of Passengers</label>
-                        <select id="passeggeri" name="passeggeri" class="form-control" required>
+                        <label for="passengers">Number of Passengers</label>
+                        <select id="passengers" name="passengers" class="form-control" required>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -956,10 +1022,10 @@
                             <option value="5-8">5-8 (Minivan)</option>
                         </select>
                     </div>
- 
+                    
                     <div class="form-group">
-                        <label for="bagagli">Number of Bags</label>
-                        <select id="bagagli" name="bagagli" class="form-control" required>
+                        <label for="luggage">Number of Bags</label>
+                        <select id="luggage" name="luggage" class="form-control" required>
                             <option value="" disabled selected>Select...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -973,11 +1039,12 @@
                             <option value="10">10+</option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="note">Additional Notes</label>
+                        <label for="notes">Additional Notes</label>
                         <textarea 
-                            id="note" 
-                            name="note" 
+                            id="notes" 
+                            name="notes" 
                             class="form-control" 
                             rows="3" 
                             placeholder="Specify any special requests (e.g. Children, Strollers,...)"></textarea>
@@ -988,18 +1055,18 @@
                     </button>
                 </form>
                 <div id="feedback-message" class="feedback-message">
-                    <i class="fas fa-check-circle"></i> Thank you! We'll respond shortly.
+                    <i class="fas fa-check-circle"></i> Thank you! We'll get back to you soon.
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Rental Section -->
-    <section class="transfer-section" id="noleggio" style="background: white;">
+    <section class="transfer-section" id="rental" style="background: white;">
         <div class="transfer-container">
             <div class="section-title">
                 <h2>Self-Drive Car Rental</h2>
-                <p>Complete flexibility to explore the Coast at your leisure</p>
+                <p>Total flexibility to explore the Coast at your leisure</p>
             </div>
             
             <div class="transfer-routes">
@@ -1013,7 +1080,6 @@
                     <ul class="route-details">
                         <li><i class="fas fa-users"></i> Up to 4 passengers</li>
                         <li><i class="fas fa-gas-pump"></i> Consumption: 18km/liter</li>
-                        <li><i class="fas fa-euro-sign"></i> From €50/day</li>
                     </ul>
                     <span class="price-tag">Insurance included</span>
                 </div>
@@ -1028,9 +1094,8 @@
                     <ul class="route-details">
                         <li><i class="fas fa-users"></i> Up to 4 passengers</li>
                         <li><i class="fas fa-gas-pump"></i> Consumption: 12km/liter</li>
-                        <li><i class="fas fa-euro-sign"></i> From €120/day</li>
                     </ul>
-                    <span class="price-tag">Guaranteed comfort</span>
+                    <span class="price-tag">Comfort guaranteed</span>
                 </div>
                 
                 <div class="route-card">
@@ -1043,7 +1108,6 @@
                     <ul class="route-details">
                         <li><i class="fas fa-users"></i> Up to 8 passengers</li>
                         <li><i class="fas fa-gas-pump"></i> Consumption: 10km/liter</li>
-                        <li><i class="fas fa-euro-sign"></i> From €150/day</li>
                     </ul>
                     <span class="price-tag">Ideal for groups</span>
                 </div>
@@ -1053,20 +1117,20 @@
 
     <!-- Map Section -->
     <section class="map-section" style="padding: 0; background: var(--light);">
-        <div class="section-title" style="padding-top: 3rem;">
+        <div class="section-title" style="padding-top: 2rem;">
             <h2>Where to Find Us</h2>
             <p>Our headquarters in Castellammare di Stabia</p>
         </div>
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 3rem; text-align: center;">
+        <div style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1rem 2rem; text-align: center;">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1207.689012154597!2d14.4765623!3d40.694954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133baf1c7d0809a9%3A0xec08b4e0bdaa4b2e!2sCorso%20Alcide%20De%20Gasperi%2C%20182%2C%2080013%20Castellammare%20di%20Stabia%20NA!5e0!3m2!1sen!2sit!4v1620000000000!5m2!1sen!2sit" 
                 width="100%" 
-                height="400" 
-                style="border:0; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" 
+                height="300" 
+                style="border:0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08);" 
                 allowfullscreen="" 
                 loading="lazy">
             </iframe>
-            <div style="margin-top: 1.5rem;">
+            <div style="margin-top: 1rem;">
                 <a href="https://www.google.com/maps/dir//Corso+Alcide+De+Gasperi,+182,+80013+Castellammare+di+Stabia+NA/@40.694954,14.4765623,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x133baf1c7d0809a9:0xec08b4e0bdaa4b2e!2m2!1d14.4765623!2d40.694954?entry=ttu" 
                    class="btn btn-secondary" 
                    target="_blank"
@@ -1078,23 +1142,23 @@
     </section>
 
     <!-- Reviews Section -->
-    <section class="reviews-section" id="recensioni" style="padding: 5rem 0; background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+    <section class="reviews-section" id="reviews">
         <div class="transfer-container">
             <div class="section-title">
-                <h2>What Our Customers Say</h2>
-                <p>Experiences from those who have traveled with us</p>
+                <h2>What Our Clients Say</h2>
+                <p>Experiences from those who traveled with us</p>
             </div>
             
-            <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div class="reviews-grid">
                 <!-- Review 1 -->
-                <div class="review-card" style="background: white; border-radius: 15px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
-                    <div class="review-header" style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-                        <div class="reviewer-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin-right: 1rem;">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">
                             M
                         </div>
                         <div>
-                            <h3 style="margin: 0; color: var(--dark);">Marco R.</h3>
-                            <div class="review-stars" style="color: var(--secondary); margin-top: 0.3rem;">
+                            <h3>Mark R.</h3>
+                            <div class="review-stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1104,22 +1168,22 @@
                         </div>
                     </div>
                     <div class="review-content">
-                        <p style="font-style: italic; color: var(--gray);">"Impeccable service! The driver was punctual, professional and very helpful. The car was spotless and comfortable. Highly recommended for those who want to travel in peace along the Coast."</p>
-                        <div class="review-date" style="font-size: 0.9rem; color: var(--gray); margin-top: 1rem;">
+                        <p>"Impeccable service! The driver was punctual, professional and very helpful. The car was spotless and comfortable. Highly recommended for those who want to travel in peace along the Coast."</p>
+                        <div class="review-date">
                             <i class="far fa-calendar-alt"></i> June 15, 2025
                         </div>
                     </div>
                 </div>
                 
                 <!-- Review 2 -->
-                <div class="review-card" style="background: white; border-radius: 15px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
-                    <div class="review-header" style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-                        <div class="reviewer-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin-right: 1rem;">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">
                             S
                         </div>
                         <div>
-                            <h3 style="margin: 0; color: var(--dark);">Silvia B.</h3>
-                            <div class="review-stars" style="color: var(--secondary); margin-top: 0.3rem;">
+                            <h3>Sarah B.</h3>
+                            <div class="review-stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1129,22 +1193,22 @@
                         </div>
                     </div>
                     <div class="review-content">
-                        <p style="font-style: italic; color: var(--gray);">"We rented a car for 3 days and everything went perfectly. The staff was very kind and helpful in explaining the best routes. The car was in excellent condition and the price was competitive."</p>
-                        <div class="review-date" style="font-size: 0.9rem; color: var(--gray); margin-top: 1rem;">
+                        <p>"We rented a car for 3 days and everything went perfectly. The staff was very kind and helpful in explaining the best routes. Car in excellent condition and competitive price."</p>
+                        <div class="review-date">
                             <i class="far fa-calendar-alt"></i> May 2, 2025
                         </div>
                     </div>
                 </div>
                 
                 <!-- Review 3 -->
-                <div class="review-card" style="background: white; border-radius: 15px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
-                    <div class="review-header" style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-                        <div class="reviewer-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin-right: 1rem;">
-                            G
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">
+                            J
                         </div>
                         <div>
-                            <h3 style="margin: 0; color: var(--dark);">Giovanni L.</h3>
-                            <div class="review-stars" style="color: var(--secondary); margin-top: 0.3rem;">
+                            <h3>John L.</h3>
+                            <div class="review-stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1154,8 +1218,8 @@
                         </div>
                     </div>
                     <div class="review-content">
-                        <p style="font-style: italic; color: var(--gray);">"Perfect transfer from the airport to Positano despite our flight delay. The driver waited patiently and was very friendly during the trip. Next time I will definitely return to them!"</p>
-                        <div class="review-date" style="font-size: 0.9rem; color: var(--gray); margin-top: 1rem;">
+                        <p>"Transfer from the airport to Positano perfect despite our flight delay. The driver waited patiently and was very friendly during the trip. Next time I'll definitely come back to them!"</p>
+                        <div class="review-date">
                             <i class="far fa-calendar-alt"></i> April 22, 2025
                         </div>
                     </div>
@@ -1163,7 +1227,7 @@
             </div>
             
             <!-- Google Reviews Button -->
-            <div style="text-align: center; margin-top: 3rem;">
+            <div style="text-align: center; margin-top: 2rem;">
                 <a href="https://www.google.it/maps/place/S.A.+RENT+di+Di+somma+Clelia/@40.7059372,14.4801513,17z/data=!4m18!1m9!3m8!1s0x133bbd81a7010b57:0xed102f318a3c48da!2sS.A.+RENT+di+Di+somma+Clelia!8m2!3d40.7059332!4d14.4827262!9m1!1b1!16s%2Fg%2F11t6195p2h!3m7!1s0x133bbd81a7010b57:0xed102f318a3c48da!8m2!3d40.7059332!4d14.4827262!9m1!1b1!16s%2Fg%2F11t6195p2h?hl=it&entry=ttu&g_ep=EgoyMDI1MDYxNS4wIKXMDSoASAFQAw%3D%3D"
                class="btn" 
                target="_blank"
@@ -1175,12 +1239,12 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contatti">
+    <footer id="contacts">
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-column">
                     <h3>S.A. Rent</h3>
-                    <p>Amalfi Coast transfer and car rental services since 2010. Professionalism, comfort and competitive prices.</p>
+                    <p>Transfer and car rental services for the Amalfi Coast since 2010. Professionalism, comfort and competitive prices.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/profile.php?id=100083107430351" class="social-link facebook" target="_blank">
                             <i class="fab fa-facebook-f"></i>
@@ -1195,7 +1259,7 @@
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Contact</h3>
+                    <h3>Contacts</h3>
                     <ul>
                         <li>
                             <a href="tel:+3908119203046">
@@ -1226,7 +1290,7 @@
                         <li><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 8:00 PM</li>
                         <li><i class="fas fa-clock"></i> Sat: 8:00 AM - 6:00 PM</li>
                         <li><i class="fas fa-clock"></i> Sun: By appointment</li>
-                        <li><i class="fas fa-exclamation-circle"></i> Chauffeur service 24/7</li>
+                        <li><i class="fas fa-exclamation-circle"></i> NCC service 24/7</li>
                     </ul>
                 </div>
             </div>
@@ -1242,11 +1306,16 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Cookie Banner -->
+    <div id="cookie-banner">
+        This website uses cookies to improve your experience. <button onclick="acceptCookies()">Accept</button>
+    </div>
+
     <script>
         // Show/hide return field
-        document.getElementById('tipo-servizio').addEventListener('change', function() {
-            document.getElementById('ritorno-group').style.display = 
-                this.value === 'andata-ritorno' ? 'block' : 'none';
+        document.getElementById('service-type').addEventListener('change', function() {
+            document.getElementById('return-group').style.display = 
+                this.value === 'round-trip' ? 'block' : 'none';
         });
 
         // Form handling
@@ -1278,19 +1347,19 @@
                     }, 5000);
                 } else {
                     // Fallback to mailto
-                    const mailtoBody = `Service: ${form['tipo-servizio'].value}\n` +
-                                      `Departure: ${form['partenza'].value}\n` +
-                                      `Destination: ${form['destinazione'].value}\n` +
-                                      `Date: ${form['data-partenza'].value}\n` +
-                                      `Passengers: ${form['passeggeri'].value}` +
-                                      `Bags: ${form['bagagli'].value}` +
-                                      `Notes: ${form['note'].value || 'No notes'}`;
+                    const mailtoBody = `Service: ${form['service-type'].value}\n` +
+                                      `Departure: ${form['departure'].value}\n` +
+                                      `Destination: ${form['destination'].value}\n` +
+                                      `Date: ${form['departure-date'].value}\n` +
+                                      `Passengers: ${form['passengers'].value}\n` +
+                                      `Luggage: ${form['luggage'].value}\n` +
+                                      `Notes: ${form['notes'].value || 'No notes'}`;
                     
-                    window.location.href = `mailto:sarent2022@libero.it?subject=Transfer request&body=${encodeURIComponent(mailtoBody)}`;
+                    window.location.href = `mailto:sarent2022@libero.it?subject=Quote request&body=${encodeURIComponent(mailtoBody)}`;
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert("Error sending request. Contact us via WhatsApp at +39 340 621 0835");
+                alert("Error sending. Contact us via WhatsApp at +39 340 621 0835");
             }
         });
 
@@ -1349,13 +1418,8 @@
                 rect.bottom >= 0
             );
         }
-    </script>
 
-    <div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background: #222; color: white; padding: 15px; display: none; z-index: 9999; text-align: center; font-size: 14px;">
-        This website uses cookies to improve your experience. <button onclick="acceptCookies()" style="margin-left: 10px; padding: 6px 12px; background: #4CAF50; color: white; border: none; cursor: pointer;">Accept</button>
-    </div>
-
-    <script>
+        // Cookie Banner
         function acceptCookies() {
             localStorage.setItem("cookieAccepted", "yes");
             document.getElementById("cookie-banner").style.display = "none";
@@ -1366,42 +1430,20 @@
                 document.getElementById("cookie-banner").style.display = "block";
             }
         };
-    </script>
 
-    <script>
-        const translations = {
-            it: {
-                "logo-subtitle": "Eccellenza nei trasferimenti e nelle escursioni di lusso su tutto il territorio nazionale",
-                "nav-home": "Home",
-                "nav-servizi": "Servizi",
-                "nav-transfer": "Transfer",
-                "nav-noleggio": "Noleggio",
-                "nav-recensioni": "Recensioni",
-                "nav-contatti": "Contatti",
-                "nav-galleria": "Galleria"
-            },
-            en: {
-                "logo-subtitle": "Excellence in transfers and luxury tours throughout Italy",
-                "nav-home": "Home",
-                "nav-servizi": "Services",
-                "nav-transfer": "Transfers",
-                "nav-noleggio": "Car Rental",
-                "nav-recensioni": "Reviews",
-                "nav-contatti": "Contact",
-                "nav-galleria": "Gallery"
-            }
-        };
-
-        function setLang(lang) {
-            for (const id in translations[lang]) {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.textContent = translations[lang][id];
-                }
-            }
+        // Prevent zoom on input focus on iOS
+        if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+            document.querySelectorAll('input, select, textarea').forEach(el => {
+                el.addEventListener('focus', function() {
+                    document.querySelector('meta[name="viewport"]').content = 
+                        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+                });
+                el.addEventListener('blur', function() {
+                    document.querySelector('meta[name="viewport"]').content = 
+                        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+                });
+            });
         }
-
-        setLang("en");
     </script>
 </body>
 </html>

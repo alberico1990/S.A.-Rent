@@ -751,6 +751,46 @@
             }
         }
 
+/* Aggiungi questo nuovo stile per i dispositivi mobili */
+@media (max-width: 575px) {
+    header {
+        padding-top: 30px; /* Crea spazio per il selettore lingua */
+    }
+    
+    .lang-selector {
+        top: 8px;
+        right: 8px;
+        flex-direction: column; /* Disposizione verticale */
+        gap: 3px;
+    }
+    
+    .lang-selector a {
+        padding: 2px 5px;
+        font-size: 0.6rem;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem; /* Riduci leggermente il logo */
+    }
+}
+
+/* Aggiungi questo per dispositivi molto piccoli */
+@media (max-width: 400px) {
+    .lang-selector {
+        top: 5px;
+        right: 5px;
+    }
+    
+    .lang-selector a {
+        padding: 1px 3px;
+    }
+    
+    .logo-text {
+        font-size: 1rem;
+    }
+    
+   }
+
         /* Animation for review cards */
         @keyframes fadeInUp {
             from {

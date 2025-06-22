@@ -363,15 +363,16 @@
                 <div class="game-icon"><i class="fas fa-brain"></i></div>
                 <h2>Memory delle Auto</h2>
             </div>
-            <p>Trova tutte le coppie per sbloccare uno sconto speciale!</p>
+            <p>Trova tutte le coppie </p>
             <button class="btn btn-secondary" id="start-memory">Gioca</button>
             
-            <div id="memory-game-container" style="display: none;">
-                <div id="memory-grid"></div>
-                <p id="memory-message" style="text-align: center; margin-top: 1rem;"></p>
-                <div id="discount-code" style="display: none; text-align: center; margin-top: 1rem; font-weight: bold; color: var(--secondary);">
-                    Codice sconto: <span id="code">MEMORY5</span>
-                </div>
+<!-- Prima modifica: nel HTML (già presente nel tuo codice) -->
+<div id="memory-game-container" style="display: none;">
+    <div id="memory-grid"></div>
+    <p id="memory-message" style="text-align: center; margin-top: 1rem;"></p>
+    <!-- Il codice sconto è stato rimosso/commentato -->
+</div>
+           
             </div>
         </div>
 
@@ -556,46 +557,52 @@
             }
         }
 
-        function checkForMatch() {
-            const [card1, card2] = flippedCards;
-            
-            if (card1.dataset.value === card2.dataset.value) {
-                matchedPairs++;
-                flippedCards = [];
-                
-                if (matchedPairs === memoryCards.length / 2) {
-                    document.getElementById('memory-message').textContent = 'Hai vinto!';
-                    document.getElementById('discount-code').style.display = 'block';
-                }
-            } else {
-                setTimeout(() => {
-                    card1.classList.remove('flipped');
-                    card2.classList.remove('flipped');
-                    card1.textContent = '?';
-                    card2.textContent = '?';
-                    flippedCards = [];
-                }, 1000);
-            }
+// Seconda modifica: nel JavaScript (sostituisci la funzione esistente)
+function checkForMatch() {
+    const [card1, card2] = flippedCards;
+    
+    if (card1.dataset.value === card2.dataset.value) {
+        matchedPairs++;
+        flippedCards = [];
+        
+        if (matchedPairs === memoryCards.length / 2) {
+            const messageEl = document.getElementById('memory-message');
+            messageEl.textContent = 'Hai Vinto!';
+            messageEl.style.color = 'green';
+            messageEl.style.fontWeight = 'bold';
+            // Rimuovi questa riga se non vuoi più il codice sconto:
+            // document.getElementById('discount-code').style.display = 'block';
         }
+    } else {
+        setTimeout(() => {
+            card1.classList.remove('flipped');
+            card2.classList.remove('flipped');
+            card1.textContent = '?';
+            card2.textContent = '?';
+            flippedCards = [];
+        }, 1000);
+    }
+}
 
         // City Guesser Game
-        const cityData = [
-            {
-                image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                correct: "Parigi",
-                options: ["Parigi", "Roma", "Berlino", "Madrid"]
-            },
-            {
-                image: "https://images.unsplash.com/photo-1538970272646-f61fabb3bfdf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                correct: "Londra",
-                options: ["New York", "Londra", "Tokyo", "Sydney"]
-            },
-            {
-                image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                correct: "New York",
-                options: ["Los Angeles", "Chicago", "New York", "Miami"]
-            }
-        ];
+        
+const cityData = [
+    {
+        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        correct: "Parigi",
+        options: ["Parigi", "Roma", "Berlino", "Madrid"]
+    },
+    {
+        image: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        correct: "Londra",
+        options: ["New York", "Londra", "Tokyo", "Sydney"]
+    },
+    {
+        image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        correct: "New York",
+        options: ["Los Angeles", "Chicago", "New York", "Miami"]
+    }
+];
 
         let currentCityIndex = 0;
         let cityScore = 0;
@@ -606,29 +613,38 @@
             loadCityQuestion();
         });
 
-        function loadCityQuestion() {
-            if (currentCityIndex >= cityData.length) {
-                document.getElementById('city-feedback').textContent = `Gioco completato! Punteggio finale: ${cityScore}/${cityData.length}`;
-                return;
-            }
 
-            const city = cityData[currentCityIndex];
-            document.getElementById('city-image').src = city.image;
-            document.getElementById('city-score').textContent = `Punteggio: ${cityScore}`;
-            
-            const optionsContainer = document.getElementById('city-options');
-            optionsContainer.innerHTML = '';
-            
-            city.options.sort(() => 0.5 - Math.random()).forEach(option => {
-                const optionElement = document.createElement('div');
-                optionElement.className = 'city-option';
-                optionElement.textContent = option;
-                optionElement.addEventListener('click', function() {
-                    checkCityAnswer(option, city.correct);
-                });
-                optionsContainer.appendChild(optionElement);
-            });
-        }
+function loadCityQuestion() {
+    if (currentCityIndex >= cityData.length) {
+        document.getElementById('city-feedback').textContent = `Gioco completato! Punteggio finale: ${cityScore}/${cityData.length}`;
+        return;
+    }
+
+    const city = cityData[currentCityIndex];
+    const cityImage = document.getElementById('city-image');
+    
+    // Aggiungi gestione errori per l'immagine
+    cityImage.onerror = function() {
+        this.src = 'https://via.placeholder.com/800x400?text=Immagine+non+disponibile';
+    };
+    
+    cityImage.src = city.image;
+    document.getElementById('city-score').textContent = `Punteggio: ${cityScore}`;
+    
+    const optionsContainer = document.getElementById('city-options');
+    optionsContainer.innerHTML = '';
+    
+    city.options.sort(() => 0.5 - Math.random()).forEach(option => {
+        const optionElement = document.createElement('div');
+        optionElement.className = 'city-option';
+        optionElement.textContent = option;
+        optionElement.addEventListener('click', function() {
+            checkCityAnswer(option, city.correct);
+        });
+        optionsContainer.appendChild(optionElement);
+    });
+}
+        
 
         function checkCityAnswer(selected, correct) {
             const feedback = document.getElementById('city-feedback');

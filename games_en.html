@@ -370,9 +370,9 @@
             <div id="memory-game-container" style="display: none;">
                 <div id="memory-grid"></div>
                 <p id="memory-message" style="text-align: center; margin-top: 1rem;"></p>
-                <div id="discount-code" style="display: none; text-align: center; margin-top: 1rem; font-weight: bold; color: var(--secondary);">
+               <!-- <div id="discount-code" style="display: none; text-align: center; margin-top: 1rem; font-weight: bold; color: var(--secondary);">
                     Discount code: <span id="code">MEMORY5</span>
-                </div>
+                </div>-->
             </div>
         </div>
 
@@ -557,46 +557,53 @@
             }
         }
 
-        function checkForMatch() {
-            const [card1, card2] = flippedCards;
-            
-            if (card1.dataset.value === card2.dataset.value) {
-                matchedPairs++;
-                flippedCards = [];
-                
-                if (matchedPairs === memoryCards.length / 2) {
-                    document.getElementById('memory-message').textContent = 'You won!';
-                    document.getElementById('discount-code').style.display = 'block';
-                }
-            } else {
-                setTimeout(() => {
-                    card1.classList.remove('flipped');
-                    card2.classList.remove('flipped');
-                    card1.textContent = '?';
-                    card2.textContent = '?';
-                    flippedCards = [];
-                }, 1000);
-            }
+      // Sostituisci la funzione checkForMatch() con questa:
+function checkForMatch() {
+    const [card1, card2] = flippedCards;
+    
+    if (card1.dataset.value === card2.dataset.value) {
+        matchedPairs++;
+        flippedCards = [];
+        
+        if (matchedPairs === memoryCards.length / 2) {
+            const messageEl = document.getElementById('memory-message');
+            messageEl.textContent = 'You won!';
+            messageEl.style.color = 'green';
+            messageEl.style.fontWeight = 'bold';
+            // Rimuovi o commenta la riga seguente per nascondere il codice sconto
+            // document.getElementById('discount-code').style.display = 'block';
         }
+    } else {
+        setTimeout(() => {
+            card1.classList.remove('flipped');
+            card2.classList.remove('flipped');
+            card1.textContent = '?';
+            card2.textContent = '?';
+            flippedCards = [];
+        }, 1000);
+    }
+} 
 
         // City Guesser Game
-        const cityData = [
-            {
-                image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                correct: "Paris",
-                options: ["Paris", "Rome", "Berlin", "Madrid"]
-            },
-            {
-                image: "https://images.unsplash.com/photo-1538970272646-f61fabb3bfdf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                correct: "London",
-                options: ["New York", "London", "Tokyo", "Sydney"]
-            },
-            {
-                image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                correct: "New York",
-                options: ["Los Angeles", "Chicago", "New York", "Miami"]
-            }
-        ];
+       
+const cityData = [
+    {
+        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        correct: "Paris",
+        options: ["Paris", "Rome", "Berlin", "Madrid"]
+    },
+    {
+        // URL corretto per Londra:
+        image: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        correct: "London",
+        options: ["New York", "London", "Tokyo", "Sydney"]
+    },
+    {
+        image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        correct: "New York",
+        options: ["Los Angeles", "Chicago", "New York", "Miami"]
+    }
+];
 
         let currentCityIndex = 0;
         let cityScore = 0;

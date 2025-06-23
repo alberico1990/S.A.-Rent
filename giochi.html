@@ -82,6 +82,9 @@
             margin-bottom: 2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
         }
 
         .game-card:hover {
@@ -103,6 +106,8 @@
         /* Quiz Game */
         #quiz-container, #quiz-result {
             display: none;
+            flex-grow: 1;
+            padding: 1rem 0;
         }
 
         .quiz-question {
@@ -129,22 +134,28 @@
         }
 
         /* Memory Game */
+        #memory-game-container {
+            display: none;
+            flex-grow: 1;
+        }
+
         #memory-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
             margin: 1.5rem 0;
+            min-height: 200px;
         }
 
         .memory-card {
-            height: 100px;
+            height: 80px;
             background: var(--primary);
             color: white;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -158,11 +169,13 @@
         /* City Guesser */
         #city-guesser-container {
             display: none;
+            flex-grow: 1;
+            padding: 1rem 0;
         }
 
         .city-image {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
             border-radius: 10px;
             margin: 1rem 0;
@@ -198,6 +211,8 @@
         /* Intruder Game */
         #intruder-container {
             display: none;
+            flex-grow: 1;
+            padding: 1rem 0;
         }
 
         .cars-grid {
@@ -208,13 +223,13 @@
         }
 
         .car-option {
-            padding: 1rem;
+            padding: 0.8rem;
             border: 1px solid #ddd;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
 
         .car-option:hover {
@@ -241,6 +256,7 @@
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            margin-top: auto;
         }
 
         .btn:hover {
@@ -270,6 +286,10 @@
             padding: 0 2rem;
         }
 
+        footer .btn[href="index.html"] { 
+    display: none !important;
+        }
+
         .copyright {
             text-align: center;
             padding-top: 1.5rem;
@@ -291,6 +311,16 @@
             #memory-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .game-card {
+                min-height: 350px;
+            }
+            .memory-card {
+                height: 70px;
+                font-size: 1.5rem;
+            }
+            .car-option {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -303,7 +333,7 @@
             </div>
             <nav class="main-nav">
                 <ul>
-
+                    <li><a href="index.html">Home</a></li>
                 </ul>
             </nav>
         </div>
@@ -328,7 +358,7 @@
             <p>Rispondi a 5 semplici domande e ti consiglieremo l'auto perfetta per te!</p>
             <button class="btn btn-secondary" id="start-quiz">Inizia il Quiz</button>
             
-            <div id="quiz-container" style="display: none;">
+            <div id="quiz-container">
                 <div class="quiz-question" id="quiz-question-1">
                     <h3>1. Quanti passeggeri sarete?</h3>
                     <div class="quiz-options">
@@ -350,7 +380,7 @@
                 <button class="btn" id="next-question" style="display: none;">Prossima Domanda</button>
             </div>
             
-            <div id="quiz-result" style="display: none;">
+            <div id="quiz-result">
                 <h3>La tua auto ideale è:</h3>
                 <div id="recommended-car" style="margin: 1rem 0; padding: 1rem; background: #f8f9fa; border-radius: 8px;"></div>
                 <a href="index.html#noleggio" class="btn btn-secondary">Noleggia ora!</a>
@@ -363,16 +393,12 @@
                 <div class="game-icon"><i class="fas fa-brain"></i></div>
                 <h2>Memory delle Auto</h2>
             </div>
-            <p>Trova tutte le coppie </p>
+            <p>Trova tutte le coppie</p>
             <button class="btn btn-secondary" id="start-memory">Gioca</button>
             
-<!-- Prima modifica: nel HTML (già presente nel tuo codice) -->
-<div id="memory-game-container" style="display: none;">
-    <div id="memory-grid"></div>
-    <p id="memory-message" style="text-align: center; margin-top: 1rem;"></p>
-    <!-- Il codice sconto è stato rimosso/commentato -->
-</div>
-           
+            <div id="memory-game-container">
+                <div id="memory-grid"></div>
+                <p id="memory-message" style="text-align: center; margin-top: 1rem;"></p>
             </div>
         </div>
 
@@ -385,7 +411,7 @@
             <p>Riconosci queste città famose? Metti alla prova la tua conoscenza!</p>
             <button class="btn btn-secondary" id="start-city-guesser">Gioca</button>
             
-            <div id="city-guesser-container" style="display: none;">
+            <div id="city-guesser-container">
                 <img src="" class="city-image" id="city-image">
                 <div class="city-options" id="city-options"></div>
                 <div class="city-feedback" id="city-feedback"></div>
@@ -402,7 +428,7 @@
             <p>Quale auto non appartiene al gruppo? Clicca sull'intruso!</p>
             <button class="btn btn-secondary" id="start-intruder">Gioca</button>
             
-            <div id="intruder-container" style="display: none;">
+            <div id="intruder-container">
                 <div class="cars-grid" id="cars-grid"></div>
                 <div class="intruder-feedback" id="intruder-feedback"></div>
                 <div id="intruder-score" style="text-align: center; margin-top: 1rem;">Livello: 1</div>
@@ -411,18 +437,14 @@
     </div>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-  <div style="text-align: center; margin-bottom: 2rem;">
-            <a href="index.html" class="btn" style="background: white; color: var(--primary);">
-                <i class="fas fa-home"></i> Torna alla Home
-            </a>
+  <!-- Sostituisci tutto il footer con questo: -->
+<footer>
+    <div class="footer-container">
+        <div class="copyright">
+            &copy; 2023 S.A. Rent - P.IVA 10014351216 - Tutti i diritti riservati
         </div>
-            <div class="copyright">
-                &copy; 2023 S.A. Rent - P.IVA 10014351216 - Tutti i diritti riservati
-            </div>
-        </div>
-    </footer>
+    </div>
+</footer>
 
     <script>
         // Quiz Game
@@ -557,52 +579,48 @@
             }
         }
 
-// Seconda modifica: nel JavaScript (sostituisci la funzione esistente)
-function checkForMatch() {
-    const [card1, card2] = flippedCards;
-    
-    if (card1.dataset.value === card2.dataset.value) {
-        matchedPairs++;
-        flippedCards = [];
-        
-        if (matchedPairs === memoryCards.length / 2) {
-            const messageEl = document.getElementById('memory-message');
-            messageEl.textContent = 'Hai Vinto!';
-            messageEl.style.color = 'green';
-            messageEl.style.fontWeight = 'bold';
-            // Rimuovi questa riga se non vuoi più il codice sconto:
-            // document.getElementById('discount-code').style.display = 'block';
+        function checkForMatch() {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.dataset.value === card2.dataset.value) {
+                matchedPairs++;
+                flippedCards = [];
+                
+                if (matchedPairs === memoryCards.length / 2) {
+                    const messageEl = document.getElementById('memory-message');
+                    messageEl.textContent = 'Hai Vinto!';
+                    messageEl.style.color = 'green';
+                    messageEl.style.fontWeight = 'bold';
+                }
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    card1.textContent = '?';
+                    card2.textContent = '?';
+                    flippedCards = [];
+                }, 1000);
+            }
         }
-    } else {
-        setTimeout(() => {
-            card1.classList.remove('flipped');
-            card2.classList.remove('flipped');
-            card1.textContent = '?';
-            card2.textContent = '?';
-            flippedCards = [];
-        }, 1000);
-    }
-}
 
         // City Guesser Game
-        
-const cityData = [
-    {
-        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        correct: "Parigi",
-        options: ["Parigi", "Roma", "Berlino", "Madrid"]
-    },
-    {
-        image: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        correct: "Londra",
-        options: ["New York", "Londra", "Tokyo", "Sydney"]
-    },
-    {
-        image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        correct: "New York",
-        options: ["Los Angeles", "Chicago", "New York", "Miami"]
-    }
-];
+        const cityData = [
+            {
+                image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                correct: "Parigi",
+                options: ["Parigi", "Roma", "Berlino", "Madrid"]
+            },
+            {
+                image: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                correct: "Londra",
+                options: ["New York", "Londra", "Tokyo", "Sydney"]
+            },
+            {
+                image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                correct: "New York",
+                options: ["Los Angeles", "Chicago", "New York", "Miami"]
+            }
+        ];
 
         let currentCityIndex = 0;
         let cityScore = 0;
@@ -613,38 +631,35 @@ const cityData = [
             loadCityQuestion();
         });
 
+        function loadCityQuestion() {
+            if (currentCityIndex >= cityData.length) {
+                document.getElementById('city-feedback').textContent = `Gioco completato! Punteggio finale: ${cityScore}/${cityData.length}`;
+                return;
+            }
 
-function loadCityQuestion() {
-    if (currentCityIndex >= cityData.length) {
-        document.getElementById('city-feedback').textContent = `Gioco completato! Punteggio finale: ${cityScore}/${cityData.length}`;
-        return;
-    }
-
-    const city = cityData[currentCityIndex];
-    const cityImage = document.getElementById('city-image');
-    
-    // Aggiungi gestione errori per l'immagine
-    cityImage.onerror = function() {
-        this.src = 'https://via.placeholder.com/800x400?text=Immagine+non+disponibile';
-    };
-    
-    cityImage.src = city.image;
-    document.getElementById('city-score').textContent = `Punteggio: ${cityScore}`;
-    
-    const optionsContainer = document.getElementById('city-options');
-    optionsContainer.innerHTML = '';
-    
-    city.options.sort(() => 0.5 - Math.random()).forEach(option => {
-        const optionElement = document.createElement('div');
-        optionElement.className = 'city-option';
-        optionElement.textContent = option;
-        optionElement.addEventListener('click', function() {
-            checkCityAnswer(option, city.correct);
-        });
-        optionsContainer.appendChild(optionElement);
-    });
-}
-        
+            const city = cityData[currentCityIndex];
+            const cityImage = document.getElementById('city-image');
+            
+            cityImage.onerror = function() {
+                this.src = 'https://via.placeholder.com/800x400?text=Immagine+non+disponibile';
+            };
+            
+            cityImage.src = city.image;
+            document.getElementById('city-score').textContent = `Punteggio: ${cityScore}`;
+            
+            const optionsContainer = document.getElementById('city-options');
+            optionsContainer.innerHTML = '';
+            
+            city.options.sort(() => 0.5 - Math.random()).forEach(option => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'city-option';
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', function() {
+                    checkCityAnswer(option, city.correct);
+                });
+                optionsContainer.appendChild(optionElement);
+            });
+        }
 
         function checkCityAnswer(selected, correct) {
             const feedback = document.getElementById('city-feedback');

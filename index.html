@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0L6KXBBE5D"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -130,6 +129,7 @@
             min-height: 70vh;
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('castellammare2.jpg') no-repeat center/cover;
+            background-attachment: fixed; /* Added for parallax effect */
             display: flex;
             align-items: center;
             color: white;
@@ -151,8 +151,57 @@
         }
 
         .hero p {
-            font-size: 1rem;
+            font-size: 1.0rem;
             margin-bottom: 1.5rem;
+        }
+
+        /* Perché Sceglierci Section */
+        .why-choose-us {
+            background: var(--light);
+            padding: 3rem 0;
+        }
+
+        .why-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .feature-item {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--gray);
         }
 
         /* Game Promo */
@@ -181,15 +230,17 @@
         }
         
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(120px, 1fr));
+            display: flex; /* Use flexbox for single row */
             gap: 0.8rem;
-            overflow-x: auto;
+            overflow-x: auto; /* Enable horizontal scrolling */
             padding-bottom: 5px;
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
         }
         
         .destination-card {
-            min-width: 120px;
+            flex: 0 0 auto; /* Prevent cards from growing/shrinking and set base size */
+            min-width: 250px; /* Make them larger on all screens */
+            max-width: 300px; /* Cap their maximum size on very large screens for single row */
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
@@ -199,7 +250,7 @@
         
         .destination-card img {
             width: 100%;
-            height: 120px;
+            height: 180px; /* Increase image height for larger appearance */
             object-fit: cover;
             display: block;
         }
@@ -310,6 +361,19 @@
             padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
+            position: relative; /* Needed for absolute positioning of the link */
+        }
+
+        .route-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block; /* Make the entire card clickable */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Ensure link is on top */
         }
 
         .route-header {
@@ -353,6 +417,8 @@
             display: inline-block;
             margin-top: 0.8rem;
             font-size: 0.8rem;
+            position: relative; /* Keep it above the link */
+            z-index: 2;
         }
 
         /* Booking Section */
@@ -679,12 +745,6 @@
         }
 
         /* Responsive */
-        @media (min-width: 400px) {
-            .gallery-grid {
-                grid-template-columns: repeat(4, minmax(120px, 1fr));
-            }
-        }
-
         @media (min-width: 576px) {
             .header-container {
                 flex-direction: row;
@@ -703,6 +763,10 @@
             
             .service-cards {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-features {
+                grid-template-columns: repeat(4, 1fr);
             }
             
             .transfer-routes {
@@ -729,6 +793,10 @@
             
             .service-cards {
                 grid-template-columns: repeat(3, 1fr);
+            }
+
+            .why-features {
+                grid-template-columns: repeat(4, 1fr);
             }
             
             .footer-grid {
@@ -818,7 +886,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="lang-selector">
             <a href="index.html">
@@ -839,26 +906,18 @@
             <nav class="main-nav">
                 <ul>
                     <li><a id="nav-home" href="#home">Home</a></li>
+                    <li><a id="nav-perche-sceglierci" href="#perche-sceglierci">Perché Sceglierci</a></li>
                     <li><a id="nav-servizi" href="#servizi">Servizi</a></li>
                     <li><a id="nav-transfer" href="#transfer">Transfer</a></li>
                     <li><a id="nav-noleggio" href="#noleggio">Noleggio</a></li>
+                    <li><a id="nav-galleria" href="galleria.html">Galleria</a></li>
                     <li><a id="nav-recensioni" href="#recensioni">Recensioni</a></li>
                     <li><a id="nav-contatti" href="#contatti">Contatti</a></li>
-                    <li><a id="nav-galleria" href="galleria.html">Galleria</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Game Promo -->
-    <section class="game-promo">
-        <h3>Scopri i nostri giochi! 🎁</h3>
-        <a href="giochi.html" class="btn" style="background: white; color: var(--secondary); font-weight: bold;">
-            <i class="fas fa-gamepad"></i> Gioca ora
-        </a>
-    </section>
-
-    <!-- Hero Banner -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Transfer Privati Napoli ⇄ Costiera Amalfitana</h1>
@@ -874,7 +933,45 @@
         </div>
     </section>
 
-    <!-- Service Highlight -->
+    <section id="perche-sceglierci" class="why-choose-us">
+        <div class="transfer-container">
+            <div class="section-title">
+                <h2>Perché Sceglierci?</h2>
+                <p>La tua soddisfazione è la nostra priorità. Scopri cosa ci rende unici.</p>
+            </div>
+            <div class="why-features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Affidabilità</h3>
+                    <p>Puntualità e serietà garantite per ogni servizio, in ogni condizione.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>Comfort</h3>
+                    <p>Veicoli moderni e sanificati per un viaggio rilassante e piacevole.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-users-gear"></i>
+                    </div>
+                    <h3>Professionalità</h3>
+                    <p>Autisti esperti e multilingue, pronti a soddisfare ogni tua richiesta.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Trasparenza</h3>
+                    <p>Nessun costo nascosto. Preventivi chiari e prezzi competitivi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="servizi" class="service-highlight">
         <div class="transfer-container">
             <div class="section-title">
@@ -882,7 +979,6 @@
                 <p>Professionalità e comfort per ogni tua esigenza di viaggio</p>
             </div>
             <div class="service-cards">
-                <!-- Card 1: Transfer -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-shuttle-van"></i>
@@ -892,7 +988,6 @@
                     <a href="#prenota" class="btn" style="margin-top: 1rem; padding: 0.5rem 1rem;">Prenota</a>
                 </div>
                 
-                <!-- Card 2: Tour -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-route"></i>
@@ -902,7 +997,6 @@
                     <a href="#transfer" class="btn" style="margin-top: 1rem; padding: 0.5rem 1rem;">Scopri</a>
                 </div>
                 
-                <!-- Card 3: Noleggio -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-car"></i>
@@ -915,7 +1009,6 @@
         </div>
     </section>
 
-    <!-- Destination Gallery -->
     <section class="destination-gallery">
         <div class="gallery-container">
             <div class="gallery-grid">
@@ -943,7 +1036,6 @@
         </div>
     </section>
 
-    <!-- Transfer Section -->
     <section class="transfer-section" id="transfer">
         <div class="transfer-container">
             <div class="section-title">
@@ -1008,11 +1100,30 @@
                         </li>
                     </ul>
                 </div>
+                <div class="route-card" id="national-transfer-card">
+                    <a href="#prenota" class="national-transfer-link"></a>
+                    <div class="route-header">
+                        <div class="route-icon">
+                            <i class="fas fa-globe-europe"></i>
+                        </div>
+                        <h3>Transfer in Tutta Italia</h3>
+                    </div>
+                    <ul class="route-details">
+                        <li>
+                            <i class="fas fa-location-dot"></i>
+                            <strong>Destinazioni:</strong> Ogni località nazionale
+                        </li>
+                        <li>
+                            <i class="fas fa-car-on"></i>
+                            <strong>Servizio:</strong> NCC professionale 24/7
+                        </li>
+                    </ul>
+                    <span class="price-tag">Preventivo su misura</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Booking Section -->
     <section class="booking-section" id="prenota">
         <div class="booking-container">
             <div class="section-title">
@@ -1031,6 +1142,7 @@
                             <option value="solo-andata">Solo Andata</option>
                             <option value="andata-ritorno">Andata e Ritorno</option>
                             <option value="tour-guidato">Tour Guidato</option>
+                            <option value="transfer-nazionale">Transfer Nazionale</option>
                         </select>
                     </div>
                     
@@ -1042,6 +1154,7 @@
                             <option value="stazione-napoli">Stazione Napoli Centrale</option>
                             <option value="hotel-napoli">Hotel a Napoli</option>
                             <option value="porto-sorrento">Porto di Sorrento</option>
+                            <option value="altra-localita">Altra Località (specificare nelle note)</option>
                         </select>
                     </div>
                     
@@ -1054,6 +1167,7 @@
                             <option value="amalfi">Amalfi</option>
                             <option value="pompei">Pompei</option>
                             <option value="vesuvio">Vesuvio</option>
+                            <option value="altra-localita">Altra Località (specificare nelle note)</option>
                         </select>
                     </div>
                     
@@ -1116,7 +1230,6 @@
         </div>
     </section>
 
-    <!-- Noleggio Section -->
     <section class="transfer-section" id="noleggio" style="background: white;">
         <div class="transfer-container">
             <div class="section-title">
@@ -1135,8 +1248,7 @@
                     <ul class="route-details">
                         <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
                         <li><i class="fas fa-gas-pump"></i> Consumo: 18km/litro</li>
-                       <!-- <li><i class="fas fa-euro-sign"></i> Da €50/giorno</li>-->
-                    </ul>
+                       </ul>
                     <span class="price-tag">Assicurazione inclusa</span>
                 </div>
                 
@@ -1150,8 +1262,7 @@
                     <ul class="route-details">
                         <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
                         <li><i class="fas fa-gas-pump"></i> Consumo: 12km/litro</li>
-                      <!--  <li><i class="fas fa-euro-sign"></i> Da €120/giorno</li>-->
-                    </ul>
+                      </ul>
                     <span class="price-tag">Confort garantito</span>
                 </div>
                 
@@ -1165,15 +1276,13 @@
                     <ul class="route-details">
                         <li><i class="fas fa-users"></i> Fino a 8 passeggeri</li>
                         <li><i class="fas fa-gas-pump"></i> Consumo: 10km/litro</li>
-                      <!--  <li><i class="fas fa-euro-sign"></i> Da €150/giorno</li>-->
-                    </ul>
+                      </ul>
                     <span class="price-tag">Ideale per gruppi</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Map Section -->
     <section class="map-section" style="padding: 0; background: var(--light);">
         <div class="section-title" style="padding-top: 2rem;">
             <h2>Dove Trovarci</h2>
@@ -1199,7 +1308,6 @@
         </div>
     </section>
 
-    <!-- Reviews Section -->
     <section class="reviews-section" id="recensioni">
         <div class="transfer-container">
             <div class="section-title">
@@ -1208,7 +1316,6 @@
             </div>
             
             <div class="reviews-grid">
-                <!-- Review 1 -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-avatar">
@@ -1233,7 +1340,6 @@
                     </div>
                 </div>
                 
-                <!-- Review 2 -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-avatar">
@@ -1258,7 +1364,6 @@
                     </div>
                 </div>
                 
-                <!-- Review 3 -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-avatar">
@@ -1284,7 +1389,6 @@
                 </div>
             </div>
             
-            <!-- Google Reviews Button -->
             <div style="text-align: center; margin-top: 2rem;">
                 <a href="https://www.google.it/maps/place/S.A.+RENT+di+Di+somma+Clelia/@40.7059372,14.4801513,17z/data=!4m18!1m9!3m8!1s0x133bbd81a7010b57:0xed102f318a3c48da!2sS.A.+RENT+di+Di+somma+Clelia!8m2!3d40.7059332!4d14.4827262!9m1!1b1!16s%2Fg%2F11t6195p2h!3m7!1s0x133bbd81a7010b57:0xed102f318a3c48da!8m2!3d40.7059332!4d14.4827262!9m1!1b1!16s%2Fg%2F11t6195p2h?hl=it&entry=ttu&g_ep=EgoyMDI1MDYxNS4wIKXMDSoASAFQAw%3D%3D"
                class="btn" 
@@ -1296,7 +1400,13 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <section class="game-promo">
+        <h3>Scopri i nostri giochi! 🎁</h3>
+        <a href="giochi.html" class="btn" style="background: white; color: var(--secondary); font-weight: bold;">
+            <i class="fas fa-gamepad"></i> Gioca ora
+        </a>
+    </section>
+
     <footer id="contatti">
         <div class="footer-container">
             <div class="footer-grid">
@@ -1354,17 +1464,15 @@
             </div>
             
             <div class="copyright">
-                &copy; 2023 S.A. Rent - P.IVA 10014351216 - Tutti i diritti riservati
+                © 2023 S.A. Rent - P.IVA 10014351216 - Tutti i diritti riservati
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Float Button -->
     <a href="https://wa.me/393406210835" class="whatsapp-float" target="_blank" aria-label="Chatta su WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Cookie Banner -->
     <div id="cookie-banner">
         Questo sito utilizza cookie per migliorare l'esperienza. <button onclick="acceptCookies()">Accetta</button>
     </div>
@@ -1458,15 +1566,6 @@
             });
         }
 
-        // Run animation when reviews section is in view
-        window.addEventListener('scroll', function() {
-            const reviewsSection = document.querySelector('.reviews-section');
-            if (isElementInViewport(reviewsSection)) {
-                animateReviews();
-                window.removeEventListener('scroll', arguments.callee);
-            }
-        });
-
         // Helper function to check if element is in viewport
         function isElementInViewport(el) {
             if (!el) return false;
@@ -1502,6 +1601,18 @@
                 });
             });
         }
+
+        // Handle click on "Transfer in Tutta Italia" card
+        document.getElementById('national-transfer-card').addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default link behavior
+            const tipoServizio = document.getElementById('tipo-servizio');
+            tipoServizio.value = 'transfer-nazionale'; // Set the dropdown
+            
+            // Scroll to the booking form
+            document.getElementById('prenota').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
     </script>
 </body>
 </html>

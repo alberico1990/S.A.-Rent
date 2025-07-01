@@ -3,29 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galleria Fotografica</title>
+  <meta name="description" content="Galleria fotografica con immagini selezionate che raccontano storie uniche">
+  <title>Galleria Fotografica | Ogni scatto racconta una storia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Preload delle risorse critiche -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" as="style">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" as="style">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js" as="script">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet"/>
+  <!-- Google Fonts con fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  </noscript>
 
   <!-- Lightbox CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" rel="stylesheet">
 
   <style>
+    :root {
+      --primary-color: #1e3c72;
+      --secondary-color: #2a5298;
+      --text-color: #333;
+      --light-bg: #fafafa;
+      --dark-bg: #eaeaea;
+      --white: #fff;
+      --shadow: 0 6px 20px rgba(0,0,0,0.1);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.15);
+      --overlay-bg: rgba(0,0,0,0.5);
+      --transition: all 0.3s ease;
+    }
+
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
       font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(to bottom right, #fafafa, #eaeaea);
-      color: #333;
+      background: linear-gradient(to bottom right, var(--light-bg), var(--dark-bg));
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
       padding: 60px 20px 30px;
       text-align: center;
       position: relative;
@@ -34,19 +63,23 @@
 
     header h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3rem);
       margin: 0;
       animation: slideDown 1s ease-out;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
 
     header p.typing {
-      font-size: 1.2rem;
-      margin-top: 10px;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin: 10px auto 0;
+      max-width: 80%;
       white-space: nowrap;
       overflow: hidden;
-      border-right: 3px solid white;
+      border-right: 3px solid var(--white);
       width: 0;
-      animation: typing 3.5s steps(40, end) forwards, blink 0.75s step-end infinite;
+      animation: 
+        typing 3.5s steps(40, end) forwards, 
+        blink 0.75s step-end infinite;
     }
 
     @keyframes slideDown {
@@ -65,31 +98,40 @@
 
     .galleria {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 20px;
       padding: 40px;
-      max-width: 1300px;
-      margin: auto;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .foto {
       position: relative;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow);
       transform: scale(1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: var(--transition);
       animation: fadeIn 0.8s ease;
+      aspect-ratio: 4/3;
     }
 
     .foto:hover {
       transform: scale(1.03);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .foto a {
+      display: block;
+      height: 100%;
+      width: 100%;
     }
 
     .foto img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       display: block;
       transition: filter 0.3s;
     }
@@ -98,37 +140,31 @@
       filter: brightness(80%);
     }
 
-    .descrizione {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.5);
-      color: white;
-      padding: 10px;
-      text-align: center;
-      font-weight: 600;
-      font-size: 1rem;
-      backdrop-filter: blur(4px);
-    }
-
     .back-home {
       text-align: center;
-      margin: 30px;
+      margin: 30px auto;
+      padding: 0 20px;
     }
 
     .back-home a {
-      background: #1e3c72;
-      color: white;
+      display: inline-block;
+      background: var(--primary-color);
+      color: var(--white);
       padding: 12px 28px;
       border-radius: 10px;
       text-decoration: none;
       font-weight: bold;
-      transition: background 0.3s;
+      transition: var(--transition);
       box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      border: 2px solid transparent;
     }
 
-    .back-home a:hover {
-      background: #2a5298;
+    .back-home a:hover,
+    .back-home a:focus {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+      outline: none;
+      border-color: var(--white);
     }
 
     @keyframes fadeIn {
@@ -136,17 +172,62 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
+    /* Accessibilità e focus styles */
+    a:focus-visible {
+      outline: 3px solid var(--secondary-color);
+      outline-offset: 3px;
+    }
 
-      header p.typing {
-        font-size: 1rem;
+    /* Ottimizzazioni per mobile */
+    @media (max-width: 768px) {
+      .galleria {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 20px;
+        gap: 15px;
       }
+      
+      header {
+        padding: 40px 20px 20px;
+      }
+    }
 
-      .descrizione {
-        font-size: 0.9rem;
+    @media (max-width: 480px) {
+      .galleria {
+        grid-template-columns: 1fr;
+      }
+      
+      .back-home a {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+
+    /* Loader per immagini */
+    .foto::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+      background-size: 200% 100%;
+      animation: 1.5s shine linear infinite;
+      z-index: 1;
+      opacity: 0;
+    }
+
+    .foto.loading::before {
+      opacity: 1;
+    }
+
+    .foto.loading img {
+      opacity: 0;
+    }
+
+    @keyframes shine {
+      to {
+        background-position-x: -200%;
       }
     }
   </style>
@@ -155,85 +236,101 @@
 
   <header>
     <h1>La Mia Galleria</h1>
-    <p class="typing">Ogni scatto racconta una storia...</p>
+    <p class="typing" aria-label="Ogni scatto racconta una storia">Ogni scatto racconta una storia...</p>
   </header>
 
-  <section class="galleria">
-    <!-- 11 immagini -->
-    <!-- Puoi duplicare o modificare le descrizioni -->
-    <div class="foto">
-      <a href="galleria2/foto1.jpeg" data-lightbox="galleria" data-title="Foto 1">
-        <img src="galleria2/foto1.jpeg" alt="Foto 1">
-      <!--  <div class="descrizione">Foto 1</div>-->
-      </a>
-    </div>
-    <div class="foto">
-      <a href="galleria2/foto2.jpeg" data-lightbox="galleria" data-title="Foto 2">
-        <img src="galleria2/foto2.jpeg" alt="Foto 2">
-        <!--<div class="descrizione"></div>-->
-      </a>
-    </div>
-    <div class="foto">
-      <a href="galleria2/foto3.jpeg" data-lightbox="galleria" data-title="Foto 3">
-        <img src="galleria2/foto3.jpeg" alt="Foto 3">
-     <!--   <div class="descrizione">Foto 3</div>-->
-      </a>
-    </div>
-    <div class="foto">
-      <a href="galleria2/foto4.jpeg" data-lightbox="galleria" data-title="Foto 4">
-        <img src="galleria2/foto4.jpeg" alt="Foto 4">
-        <!--<div class="descrizione">Foto 4</div>-->
-      </a>
-    </div>
-    <div class="foto">
-      <a href="galleria2/foto5.jpeg" data-lightbox="galleria" data-title="Foto 5">
-        <img src="galleria2/foto5.jpeg" alt="Foto 5">
-        <!--<div class="descrizione">Foto 5</div>-->
-      </a>
-    </div>
-    <div class="foto">
-      <a href="galleria2/foto6.jpeg" data-lightbox="galleria" data-title="Foto 6">
-        <img src="galleria2/foto6.jpeg" alt="Foto 6">
-        <!--<div class="descrizione">Foto 6</div>-->
-      </a>
-    </div>
-    <div class="foto">
-      <a href="galleria2/foto7.jpeg" data-lightbox="galleria" data-title="Foto 7">
-        <img src="galleria2/foto7.jpeg" alt="Foto 7">
-        <!--<div class="descrizione">Foto 7</div>-->
-      </a>
-    </div>
-    <div class="foto">
-      <a href="galleria2/foto8.jpeg" data-lightbox="galleria" data-title="Foto 8">
-        <img src="galleria2/foto8.jpeg" alt="Foto 8">
-        <!--<div class="descrizione">Foto 8</div>-->
-      </a>
-    </div>
-    <div class="foto">
-      <a href="galleria2/foto9.jpeg" data-lightbox="galleria" data-title="Foto 9">
-        <img src="galleria2/foto9.jpeg" alt="Foto 9">
-        <!--<div class="descrizione">Foto 9</div>-->
-      </a>
-    </div>
-    <div class="foto">
-      <a href="galleria2/foto10.jpeg" data-lightbox="galleria" data-title="Foto 10">
-        <img src="galleria2/foto10.jpeg" alt="Foto 10">
-        <!--<div class="descrizione">Foto 10</div>-->
-      </a>
-    </div>
-    <div class="foto">
-      <a href="galleria2/foto11.jpeg" data-lightbox="galleria" data-title="Foto 11">
-        <img src="galleria2/foto11.jpeg" alt="Foto 11">
-      <!--  <div class="descrizione">Foto 11</div>-->
-      </a>
-    </div>
-  </section>
+  <main>
+    <section class="galleria" aria-label="Galleria fotografica">
+      <div class="foto">
+        <a href="galleria2/foto1.jpeg" data-lightbox="galleria" data-title="Foto 1">
+          <img src="galleria2/foto1.jpeg" alt="Foto 1" loading="lazy">
+        </a>
+      </div>
+      <div class="foto">
+        <a href="galleria2/foto2.jpeg" data-lightbox="galleria" data-title="Foto 2">
+          <img src="galleria2/foto2.jpeg" alt="Foto 2" loading="lazy">
+        </a>
+      </div>
+      <div class="foto">
+        <a href="galleria2/foto3.jpeg" data-lightbox="galleria" data-title="Foto 3">
+          <img src="galleria2/foto3.jpeg" alt="Foto 3" loading="lazy">
+        </a>
+      </div>
+      <div class="foto">
+        <a href="galleria2/foto4.jpeg" data-lightbox="galleria" data-title="Foto 4">
+          <img src="galleria2/foto4.jpeg" alt="Foto 4" loading="lazy">
+        </a>
+      </div>
+      <div class="foto">
+        <a href="galleria2/foto5.jpeg" data-lightbox="galleria" data-title="Foto 5">
+          <img src="galleria2/foto5.jpeg" alt="Foto 5" loading="lazy">
+        </a>
+      </div>
+      <div class="foto">
+        <a href="galleria2/foto6.jpeg" data-lightbox="galleria" data-title="Foto 6">
+          <img src="galleria2/foto6.jpeg" alt="Foto 6" loading="lazy">
+        </a>
+      </div>
+      <div class="foto">
+        <a href="galleria2/foto7.jpeg" data-lightbox="galleria" data-title="Foto 7">
+          <img src="galleria2/foto7.jpeg" alt="Foto 7" loading="lazy">
+        </a>
+      </div>
+      <div class="foto">
+        <a href="galleria2/foto8.jpeg" data-lightbox="galleria" data-title="Foto 8">
+          <img src="galleria2/foto8.jpeg" alt="Foto 8" loading="lazy">
+        </a>
+      </div>
+      <div class="foto">
+        <a href="galleria2/foto9.jpeg" data-lightbox="galleria" data-title="Foto 9">
+          <img src="galleria2/foto9.jpeg" alt="Foto 9" loading="lazy">
+        </a>
+      </div>
+      <div class="foto">
+        <a href="galleria2/foto10.jpeg" data-lightbox="galleria" data-title="Foto 10">
+          <img src="galleria2/foto10.jpeg" alt="Foto 10" loading="lazy">
+        </a>
+      </div>
+      <div class="foto">
+        <a href="galleria2/foto11.jpeg" data-lightbox="galleria" data-title="Foto 11">
+          <img src="galleria2/foto11.jpeg" alt="Foto 11" loading="lazy">
+        </a>
+      </div>
+    </section>
+  </main>
 
   <div class="back-home">
-    <a href="index.html">🏠 Torna alla Home</a>
+    <a href="index.html" aria-label="Torna alla pagina principale">🏠 Torna alla Home</a>
   </div>
 
-  <!-- Lightbox JS -->
-  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js"></script>
+  <!-- Lightbox JS con defer -->
+  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js" defer></script>
+  
+  <script>
+    // Gestione del caricamento delle immagini
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('.foto img');
+      
+      images.forEach(img => {
+        const parent = img.closest('.foto');
+        parent.classList.add('loading');
+        
+        img.onload = function() {
+          parent.classList.remove('loading');
+        };
+        
+        // Fallback nel caso l'immagine non carichi
+        img.onerror = function() {
+          parent.classList.remove('loading');
+          img.alt = 'Immagine non disponibile';
+        };
+      });
+      
+      // Aggiunge transizione più fluida dopo il caricamento
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+      }, 300);
+    });
+  </script>
 </body>
 </html>

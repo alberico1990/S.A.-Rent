@@ -1,39 +1,17 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Galleria fotografica con immagini selezionate che raccontano storie uniche">
-  <title>Galleria Fotografica | Ogni scatto racconta una storia</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
-  <!-- Preload delle risorse critiche -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" as="style">
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" as="style">
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js" as="script">
-
-  <!-- Google Fonts con fallback -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
-  </noscript>
-
-  <!-- Lightbox CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galleria Fotografica Minimal</title>
   <style>
     :root {
-      --primary-color: #1e3c72;
-      --secondary-color: #2a5298;
-      --text-color: #333;
-      --light-bg: #fafafa;
-      --dark-bg: #eaeaea;
-      --white: #fff;
-      --shadow: 0 6px 20px rgba(0,0,0,0.1);
-      --shadow-hover: 0 8px 24px rgba(0,0,0,0.15);
-      --overlay-bg: rgba(0,0,0,0.5);
-      --transition: all 0.3s ease;
+      --primary: #1e3c72;
+      --secondary: #2a5298;
+      --white: #ffffff;
+      --gray-light: #f5f5f5;
+      --shadow: 0 4px 8px rgba(0,0,0,0.1);
+      --shadow-hover: 0 6px 12px rgba(0,0,0,0.15);
     }
 
     * {
@@ -43,191 +21,152 @@
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(to bottom right, var(--light-bg), var(--dark-bg));
-      color: var(--text-color);
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--gray-light);
+      color: #333;
       line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
     header {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: var(--white);
-      padding: 60px 20px 30px;
+      padding: 3rem 1rem;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
 
-    header h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin: 0;
-      animation: slideDown 1s ease-out;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
     }
 
-    header p.typing {
-      font-size: clamp(1rem, 3vw, 1.2rem);
-      margin: 10px auto 0;
-      max-width: 80%;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid var(--white);
-      width: 0;
-      animation: 
-        typing 3.5s steps(40, end) forwards, 
-        blink 0.75s step-end infinite;
+    .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
     }
 
-    @keyframes slideDown {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
-    .galleria {
+    .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
-      max-width: 1400px;
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1200px;
       margin: 0 auto;
-      width: 100%;
     }
 
-    .foto {
-      position: relative;
-      border-radius: 15px;
+    .gallery-item {
+      border-radius: 8px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      transform: scale(1);
-      transition: var(--transition);
-      animation: fadeIn 0.8s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       aspect-ratio: 4/3;
     }
 
-    .foto:hover {
-      transform: scale(1.03);
+    .gallery-item:hover {
+      transform: scale(1.02);
       box-shadow: var(--shadow-hover);
     }
 
-    .foto a {
-      display: block;
-      height: 100%;
-      width: 100%;
-    }
-
-    .foto img {
+    .gallery-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      cursor: pointer;
       transition: filter 0.3s;
     }
 
-    .foto:hover img {
-      filter: brightness(80%);
+    .gallery-img:hover {
+      filter: brightness(90%);
     }
 
-    .back-home {
-      text-align: center;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    .back-home a {
-      display: inline-block;
-      background: var(--primary-color);
-      color: var(--white);
-      padding: 12px 28px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: var(--transition);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      border: 2px solid transparent;
-    }
-
-    .back-home a:hover,
-    .back-home a:focus {
-      background: var(--secondary-color);
-      transform: translateY(-2px);
-      outline: none;
-      border-color: var(--white);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Accessibilità e focus styles */
-    a:focus-visible {
-      outline: 3px solid var(--secondary-color);
-      outline-offset: 3px;
-    }
-
-    /* Ottimizzazioni per mobile */
-    @media (max-width: 768px) {
-      .galleria {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        padding: 20px;
-        gap: 15px;
-      }
-      
-      header {
-        padding: 40px 20px 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .galleria {
-        grid-template-columns: 1fr;
-      }
-      
-      .back-home a {
-        width: 100%;
-        box-sizing: border-box;
-      }
-    }
-
-    /* Loader per immagini */
-    .foto::before {
-      content: '';
-      position: absolute;
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
-      background-size: 200% 100%;
-      animation: 1.5s shine linear infinite;
-      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
       opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
     }
 
-    .foto.loading::before {
+    .lightbox.active {
       opacity: 1;
+      pointer-events: all;
     }
 
-    .foto.loading img {
-      opacity: 0;
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 4px;
     }
 
-    @keyframes shine {
-      to {
-        background-position-x: -200%;
+    .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(0,0,0,0.3);
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .prev-btn {
+      left: 2rem;
+    }
+
+    .next-btn {
+      right: 2rem;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      margin: 2rem auto;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+      background: var(--secondary);
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+      }
+      
+      .nav-btn {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -236,100 +175,91 @@
 
   <header>
     <h1>La Mia Galleria</h1>
-    <p class="typing" aria-label="Ogni scatto racconta una storia">Ogni scatto racconta una storia...</p>
+    <p class="subtitle">Clicca su un'immagine per ingrandirla</p>
   </header>
 
-  <main>
-    <section class="galleria" aria-label="Galleria fotografica">
-      <div class="foto">
-        <a href="galleria2/foto1.jpeg" data-lightbox="galleria" data-title="Foto 1">
-          <img src="galleria2/foto1.jpeg" alt="Foto 1" loading="lazy">
-        </a>
-      </div>
-      <div class="foto">
-        <a href="galleria2/foto2.jpeg" data-lightbox="galleria" data-title="Foto 2">
-          <img src="galleria2/foto2.jpeg" alt="Foto 2" loading="lazy">
-        </a>
-      </div>
-      <div class="foto">
-        <a href="galleria2/foto3.jpeg" data-lightbox="galleria" data-title="Foto 3">
-          <img src="galleria2/foto3.jpeg" alt="Foto 3" loading="lazy">
-        </a>
-      </div>
-      <div class="foto">
-        <a href="galleria2/foto4.jpeg" data-lightbox="galleria" data-title="Foto 4">
-          <img src="galleria2/foto4.jpeg" alt="Foto 4" loading="lazy">
-        </a>
-      </div>
-      <div class="foto">
-        <a href="galleria2/foto5.jpeg" data-lightbox="galleria" data-title="Foto 5">
-          <img src="galleria2/foto5.jpeg" alt="Foto 5" loading="lazy">
-        </a>
-      </div>
-      <div class="foto">
-        <a href="galleria2/foto6.jpeg" data-lightbox="galleria" data-title="Foto 6">
-          <img src="galleria2/foto6.jpeg" alt="Foto 6" loading="lazy">
-        </a>
-      </div>
-      <div class="foto">
-        <a href="galleria2/foto7.jpeg" data-lightbox="galleria" data-title="Foto 7">
-          <img src="galleria2/foto7.jpeg" alt="Foto 7" loading="lazy">
-        </a>
-      </div>
-      <div class="foto">
-        <a href="galleria2/foto8.jpeg" data-lightbox="galleria" data-title="Foto 8">
-          <img src="galleria2/foto8.jpeg" alt="Foto 8" loading="lazy">
-        </a>
-      </div>
-      <div class="foto">
-        <a href="galleria2/foto9.jpeg" data-lightbox="galleria" data-title="Foto 9">
-          <img src="galleria2/foto9.jpeg" alt="Foto 9" loading="lazy">
-        </a>
-      </div>
-      <div class="foto">
-        <a href="galleria2/foto10.jpeg" data-lightbox="galleria" data-title="Foto 10">
-          <img src="galleria2/foto10.jpeg" alt="Foto 10" loading="lazy">
-        </a>
-      </div>
-      <div class="foto">
-        <a href="galleria2/foto11.jpeg" data-lightbox="galleria" data-title="Foto 11">
-          <img src="galleria2/foto11.jpeg" alt="Foto 11" loading="lazy">
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <div class="back-home">
-    <a href="index.html" aria-label="Torna alla pagina principale">🏠 Torna alla Home</a>
+  <div class="gallery">
+    <!-- Immagini della galleria -->
+    <div class="gallery-item">
+      <img src="galleria2/foto1.jpeg" alt="Foto 1" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto1.jpeg')">
+    </div>
+    <div class="gallery-item">
+      <img src="galleria2/foto2.jpeg" alt="Foto 2" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto2.jpeg')">
+    </div>
+    <div class="gallery-item">
+      <img src="galleria2/foto3.jpeg" alt="Foto 3" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto3.jpeg')">
+    </div>
+    <div class="gallery-item">
+      <img src="galleria2/foto4.jpeg" alt="Foto 4" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto4.jpeg')">
+    </div>
+    <div class="gallery-item">
+      <img src="galleria2/foto5.jpeg" alt="Foto 5" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto5.jpeg')">
+    </div>
+    <div class="gallery-item">
+      <img src="galleria2/foto6.jpeg" alt="Foto 6" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto6.jpeg')">
+    </div>
+    <div class="gallery-item">
+      <img src="galleria2/foto7.jpeg" alt="Foto 7" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto7.jpeg')">
+    </div>
+    <div class="gallery-item">
+      <img src="galleria2/foto8.jpeg" alt="Foto 8" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto8.jpeg')">
+    </div>
+    <div class="gallery-item">
+      <img src="galleria2/foto9.jpeg" alt="Foto 9" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto9.jpeg')">
+    </div>
+    <div class="gallery-item">
+      <img src="galleria2/foto10.jpeg" alt="Foto 10" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto10.jpeg')">
+    </div>
+    <div class="gallery-item">
+      <img src="galleria2/foto11.jpeg" alt="Foto 11" class="gallery-img" loading="lazy" onclick="openLightbox('galleria2/foto11.jpeg')">
+    </div>
   </div>
 
-  <!-- Lightbox JS con defer -->
-  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js" defer></script>
-  
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <span class="nav-btn prev-btn" onclick="navigate(-1)">&#10094;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <span class="nav-btn next-btn" onclick="navigate(1)">&#10095;</span>
+  </div>
+
+  <div style="text-align: center;">
+    <a href="index.html" class="back-btn">🏠 Torna alla Home</a>
+  </div>
+
   <script>
-    // Gestione del caricamento delle immagini
-    document.addEventListener('DOMContentLoaded', function() {
-      const images = document.querySelectorAll('.foto img');
-      
-      images.forEach(img => {
-        const parent = img.closest('.foto');
-        parent.classList.add('loading');
-        
-        img.onload = function() {
-          parent.classList.remove('loading');
-        };
-        
-        // Fallback nel caso l'immagine non carichi
-        img.onerror = function() {
-          parent.classList.remove('loading');
-          img.alt = 'Immagine non disponibile';
-        };
-      });
-      
-      // Aggiunge transizione più fluida dopo il caricamento
-      setTimeout(() => {
-        document.body.classList.add('loaded');
-      }, 300);
+    let currentIndex = 0;
+    const images = Array.from(document.querySelectorAll('.gallery-img'));
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src) {
+      currentIndex = images.findIndex(img => img.src.includes(src.split('/').pop()));
+      lightboxImg.src = src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function navigate(direction) {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      lightboxImg.src = images[currentIndex].src;
+    }
+
+    // Chiudi con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
+    });
+
+    // Chiudi cliccando sullo sfondo
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
     });
   </script>
 </body>

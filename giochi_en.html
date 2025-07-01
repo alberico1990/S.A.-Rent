@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.A. Rent - Games | Naples Car Rental</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --primary-dark: #003d7a;
+            --secondary: #FF6B00;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* Hero */
+        .games-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Games Container */
+        .games-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .game-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+
+        /* Quiz Game */
+        #quiz-container, #quiz-result {
+            display: none;
+            flex-grow: 1;
+            padding: 1rem 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+
+        .quiz-option {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: rgba(0,86,179,0.1);
+            border-color: var(--primary);
+        }
+
+        /* Memory Game */
+        #memory-game-container {
+            display: none;
+            flex-grow: 1;
+        }
+
+        #memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+            min-height: 200px;
+        }
+
+        .memory-card {
+            height: 80px;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .memory-card.flipped {
+            background: white;
+            color: var(--dark);
+            border: 2px solid var(--primary);
+        }
+
+        /* City Guesser */
+        #city-guesser-container {
+            display: none;
+            flex-grow: 1;
+            padding: 1rem 0;
+        }
+
+        .city-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .city-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .city-option {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .city-option:hover {
+            background: rgba(0,86,179,0.1);
+            border-color: var(--primary);
+        }
+
+        .city-feedback {
+            margin: 1rem 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Intruder Game */
+        #intruder-container {
+            display: none;
+            flex-grow: 1;
+            padding: 1rem 0;
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .car-option {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        .car-option:hover {
+            background: rgba(0,86,179,0.1);
+            border-color: var(--primary);
+        }
+
+        .intruder-feedback {
+            margin: 1rem 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: auto;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #e05a00;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        footer .btn[href="index.html"] {
+    display: none !important;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #memory-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .city-options, .cars-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #memory-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .game-card {
+                min-height: 350px;
+            }
+            .memory-card {
+                height: 70px;
+                font-size: 1.5rem;
+            }
+            .car-option {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">S.A. RENT Luxury Car Service</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="games-hero">
+        <div>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Interactive Games</h1>
+            <p style="font-size: 1.2rem;">Have fun and discover exclusive offers!</p>
+        </div>
+    </section>
+
+    <div class="games-container">
+        <div class="game-card">
+            <div class="game-header">
+                <div class="game-icon"><i class="fas fa-question-circle"></i></div>
+                <h2>Find Your Ideal Car</h2>
+            </div>
+            <p>Answer 5 simple questions and we'll recommend the perfect car for you!</p>
+            <button class="btn btn-secondary" id="start-quiz">Start Quiz</button>
+
+            <div id="quiz-container">
+                <div class="quiz-question" id="quiz-question-1">
+                    <h3>1. How many passengers will there be?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="1-2">1-2 people</div>
+                        <div class="quiz-option" data-value="3-4">3-4 people</div>
+                        <div class="quiz-option" data-value="5+">5 or more</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question" id="quiz-question-2" style="display: none;">
+                    <h3>2. What is your daily budget?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="50">Up to €50</div>
+                        <div class="quiz-option" data-value="100">€50-€100</div>
+                        <div class="quiz-option" data-value="150+">Over €100</div>
+                    </div>
+                </div>
+
+                <button class="btn" id="next-question" style="display: none;">Next Question</button>
+            </div>
+
+            <div id="quiz-result">
+                <h3>Your ideal car is:</h3>
+                <div id="recommended-car" style="margin: 1rem 0; padding: 1rem; background: #f8f9fa; border-radius: 8px;"></div>
+                <a href="index.html#rental" class="btn btn-secondary">Rent now!</a>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-header">
+                <div class="game-icon"><i class="fas fa-brain"></i></div>
+                <h2>Car Memory Game</h2>
+            </div>
+            <p>Find all the pairs</p>
+            <button class="btn btn-secondary" id="start-memory">Play</button>
+
+            <div id="memory-game-container">
+                <div id="memory-grid"></div>
+                <p id="memory-message" style="text-align: center; margin-top: 1rem;"></p>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-header">
+                <div class="game-icon"><i class="fas fa-globe-europe"></i></div>
+                <h2>Guess the City</h2>
+            </div>
+            <p>Do you recognize these famous cities? Test your knowledge!</p>
+            <button class="btn btn-secondary" id="start-city-guesser">Play</button>
+
+            <div id="city-guesser-container">
+                <img src="" class="city-image" id="city-image">
+                <div class="city-options" id="city-options"></div>
+                <div class="city-feedback" id="city-feedback"></div>
+                <div id="city-score" style="text-align: center; margin-top: 1rem;">Score: 0</div>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-header">
+                <div class="game-icon"><i class="fas fa-car-side"></i></div>
+                <h2>Find the Intruder</h2>
+            </div>
+            <p>Which car doesn't belong to the group? Click on the intruder!</p>
+            <button class="btn btn-secondary" id="start-intruder">Play</button>
+
+            <div id="intruder-container">
+                <div class="cars-grid" id="cars-grid"></div>
+                <div class="intruder-feedback" id="intruder-feedback"></div>
+                <div id="intruder-score" style="text-align: center; margin-top: 1rem;">Level: 1</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+    <div class="footer-container">
+        <div class="copyright">
+            &copy; 2023 S.A. Rent - P.IVA 10014351216 - All rights reserved
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Quiz Game
+        const quizData = [
+            {
+                question: "1. How many passengers will there be?",
+                options: [
+                    { text: "1-2 people", value: "1-2" },
+                    { text: "3-4 people", value: "3-4" },
+                    { text: "5 or more", value: "5+" }
+                ]
+            },
+            {
+                question: "2. What is your daily budget?",
+                options: [
+                    { text: "Up to €50", value: "50" },
+                    { text: "€50-€100", value: "100" },
+                    { text: "Over €100", value: "150+" }
+                ]
+            },
+            {
+                question: "3. What type of trip are you taking?",
+                options: [
+                    { text: "City/main roads", value: "city" },
+                    { text: "Country roads", value: "country" },
+                    { text: "Long distances", value: "long" }
+                ]
+            },
+            {
+                question: "4. What do you prefer?",
+                options: [
+                    { text: "Save on fuel", value: "eco" },
+                    { text: "Comfort and space", value: "comfort" },
+                    { text: "Performance", value: "performance" }
+                ]
+            },
+            {
+                question: "5. Luggage?",
+                options: [
+                    { text: "Carry-on only", value: "light" },
+                    { text: "2-3 suitcases", value: "medium" },
+                    { text: "Lots of luggage", value: "heavy" }
+                ]
+            }
+        ];
+
+        const carRecommendations = {
+            "1-2_50_city_eco_light": "Fiat 500 - Economical and perfect for the city",
+            "3-4_100_country_comfort_medium": "Volkswagen Golf - Comfortable for the family",
+            "5+_150+_long_performance_heavy": "Mercedes V-Class - Spacious and luxurious"
+        };
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        document.getElementById('start-quiz').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            showQuestion(0);
+        });
+
+        function showQuestion(index) {
+            const question = quizData[index];
+            document.getElementById('quiz-question-1').innerHTML = `
+                <h3>${question.question}</h3>
+                <div class="quiz-options">
+                    ${question.options.map(opt => `
+                        <div class="quiz-option" data-value="${opt.value}">${opt.text}</div>
+                    `).join('')}
+                </div>
+            `;
+
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    answers[index] = this.getAttribute('data-value');
+                    if (index < quizData.length - 1) {
+                        showQuestion(index + 1);
+                    } else {
+                        showResult();
+                    }
+                });
+            });
+        }
+
+        function showResult() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('quiz-result').style.display = 'block';
+
+            const key = answers.join('_');
+            const recommendation = carRecommendations[key] || "Volkswagen Golf - An excellent choice for every need";
+
+            document.getElementById('recommended-car').textContent = recommendation;
+        }
+
+        // Memory Game
+        const memoryCards = ['🚗', '🚕', '🚙', '🏎️', '🚓', '🚗', '🚕', '🚙', '🏎️', '🚓'];
+        let flippedCards = [];
+        let matchedPairs = 0;
+
+        document.getElementById('start-memory').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('memory-game-container').style.display = 'block';
+            initMemoryGame();
+        });
+
+        function initMemoryGame() {
+            const grid = document.getElementById('memory-grid');
+            grid.innerHTML = '';
+
+            const shuffledCards = [...memoryCards].sort(() => 0.5 - Math.random());
+
+            shuffledCards.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.index = index;
+                card.dataset.value = emoji;
+                card.textContent = '?';
+                card.addEventListener('click', flipCard);
+                grid.appendChild(card);
+            });
+        }
+
+        function flipCard() {
+            if (flippedCards.length < 2 && !this.classList.contains('flipped')) {
+                this.classList.add('flipped');
+                this.textContent = this.dataset.value;
+                flippedCards.push(this);
+
+                if (flippedCards.length === 2) {
+                    checkForMatch();
+                }
+            }
+        }
+
+        function checkForMatch() {
+            const [card1, card2] = flippedCards;
+
+            if (card1.dataset.value === card2.dataset.value) {
+                matchedPairs++;
+                flippedCards = [];
+
+                if (matchedPairs === memoryCards.length / 2) {
+                    const messageEl = document.getElementById('memory-message');
+                    messageEl.textContent = 'You Won!';
+                    messageEl.style.color = 'green';
+                    messageEl.style.fontWeight = 'bold';
+                }
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    card1.textContent = '?';
+                    card2.textContent = '?';
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        // City Guesser Game
+        const cityData = [
+            {
+                image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                correct: "Paris",
+                options: ["Paris", "Rome", "Berlin", "Madrid"]
+            },
+            {
+                image: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                correct: "London",
+                options: ["New York", "London", "Tokyo", "Sydney"]
+            },
+            {
+                image: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                correct: "New York",
+                options: ["Los Angeles", "Chicago", "New York", "Miami"]
+            }
+        ];
+
+        let currentCityIndex = 0;
+        let cityScore = 0;
+
+        document.getElementById('start-city-guesser').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('city-guesser-container').style.display = 'block';
+            loadCityQuestion();
+        });
+
+        function loadCityQuestion() {
+            if (currentCityIndex >= cityData.length) {
+                document.getElementById('city-feedback').textContent = `Game completed! Final score: ${cityScore}/${cityData.length}`;
+                return;
+            }
+
+            const city = cityData[currentCityIndex];
+            const cityImage = document.getElementById('city-image');
+
+            cityImage.onerror = function() {
+                this.src = 'https://via.placeholder.com/800x400?text=Image+not+available';
+            };
+
+            cityImage.src = city.image;
+            document.getElementById('city-score').textContent = `Score: ${cityScore}`;
+
+            const optionsContainer = document.getElementById('city-options');
+            optionsContainer.innerHTML = '';
+
+            city.options.sort(() => 0.5 - Math.random()).forEach(option => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'city-option';
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', function() {
+                    checkCityAnswer(option, city.correct);
+                });
+                optionsContainer.appendChild(optionElement);
+            });
+        }
+
+        function checkCityAnswer(selected, correct) {
+            const feedback = document.getElementById('city-feedback');
+            if (selected === correct) {
+                feedback.textContent = "Correct!";
+                feedback.style.color = "green";
+                cityScore++;
+            } else {
+                feedback.textContent = `Wrong! The correct answer was ${correct}`;
+                feedback.style.color = "red";
+            }
+
+            document.getElementById('city-score').textContent = `Score: ${cityScore}`;
+            currentCityIndex++;
+            setTimeout(loadCityQuestion, 1500);
+        }
+
+        // Intruder Game
+        const intruderData = [
+            {
+                cars: ["🚗", "🚗", "🚗", "🚕"],
+                intruder: 3
+            },
+            {
+                cars: ["🏎️", "🚙", "🏎️", "🏎️"],
+                intruder: 1
+            },
+            {
+                cars: ["🚓", "🚓", "🚙", "🚓"],
+                intruder: 2
+            }
+        ];
+
+        let currentIntruderIndex = 0;
+        let intruderLevel = 1;
+
+        document.getElementById('start-intruder').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('intruder-container').style.display = 'block';
+            loadIntruderQuestion();
+        });
+
+        function loadIntruderQuestion() {
+            if (currentIntruderIndex >= intruderData.length) {
+                document.getElementById('intruder-feedback').textContent = `You have completed all levels!`;
+                return;
+            }
+
+            const level = intruderData[currentIntruderIndex];
+            document.getElementById('intruder-score').textContent = `Level: ${intruderLevel}`;
+
+            const carsContainer = document.getElementById('cars-grid');
+            carsContainer.innerHTML = '';
+
+            level.cars.forEach((car, index) => {
+                const carElement = document.createElement('div');
+                carElement.className = 'car-option';
+                carElement.textContent = car;
+                carElement.addEventListener('click', function() {
+                    checkIntruderAnswer(index, level.intruder);
+                });
+                carsContainer.appendChild(carElement);
+            });
+        }
+
+        function checkIntruderAnswer(selected, correct) {
+            const feedback = document.getElementById('intruder-feedback');
+            if (selected === correct) {
+                feedback.textContent = "Correct! This was the intruder.";
+                feedback.style.color = "green";
+                intruderLevel++;
+            } else {
+                feedback.textContent = "Wrong! Try again.";
+                feedback.style.color = "red";
+            }
+
+            document.getElementById('intruder-score').textContent = `Level: ${intruderLevel}`;
+            if (selected === correct) {
+                currentIntruderIndex++;
+                setTimeout(loadIntruderQuestion, 1500);
+            }
+        }
+    </script>
+</body>
+</html>

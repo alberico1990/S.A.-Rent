@@ -1009,32 +1009,53 @@
         </div>
     </section>
 
-    <section class="destination-gallery">
-        <div class="gallery-container">
-            <div class="gallery-grid">
-                <div class="destination-card">
-                    <img src="galleria/napoli.jpeg" alt="Napoli">
-                    <h3>Napoli</h3>
-                </div>
-                <div class="destination-card">
-                    <img src="galleria/pompei.jpg" alt="Pompei">
-                    <h3>Pompei</h3>
-                </div>
-                <div class="destination-card">
-                    <img src="galleria/vesuvio.jpg" alt="Vesuvio">
-                    <h3>Vesuvio</h3>
-                </div>
-                <div class="destination-card">
-                    <img src="galleria/costiera-sorrentina-campania.jpg" alt="Costiera Sorrentina">
-                    <h3>Costiera Sorrentina</h3>
-                </div>
-                <div class="destination-card">
-                    <img src="galleria/costieraamalfitana.jpg" alt="Costiera Amalfitana">
-                    <h3>Costiera Amalfitana</h3>
-                </div>
+  <section class="destination-gallery">
+    <div class="gallery-container">
+        <div class="gallery-grid">
+            <div class="destination-card">
+                <picture>
+                    <source srcset="galleria/napoli.webp" type="image/webp">
+                    <source srcset="galleria/napoli.jpeg" type="image/jpeg">
+                    <img src="galleria/napoli.jpeg" alt="Napoli" loading="lazy">
+                </picture>
+                <h3>Napoli</h3>
+            </div>
+            <div class="destination-card">
+                <picture>
+                    <source srcset="galleria/pompei.webp" type="image/webp">
+                    <source srcset="galleria/pompei.jpg" type="image/jpeg">
+                    <img src="galleria/pompei.jpg" alt="Pompei" loading="lazy">
+                </picture>
+                <h3>Pompei</h3>
+            </div>
+            <div class="destination-card">
+                <picture>
+                    <source srcset="galleria/vesuvio.webp" type="image/webp">
+                    <source srcset="galleria/vesuvio.jpg" type="image/jpeg">
+                    <img src="galleria/vesuvio.jpg" alt="Vesuvio" loading="lazy">
+                </picture>
+                <h3>Vesuvio</h3>
+            </div>
+            <div class="destination-card">
+                <picture>
+                    <source srcset="galleria/costiera-sorrentina-campania.webp" type="image/webp">
+                    <source srcset="galleria/costiera-sorrentina-campania.jpg" type="image/jpeg">
+                    <img src="galleria/costiera-sorrentina-campania.jpg" alt="Costiera Sorrentina" loading="lazy">
+                </picture>
+                <h3>Costiera Sorrentina</h3>
+            </div>
+            <div class="destination-card">
+                <picture>
+                    <source srcset="galleria/costieraamalfitana.webp" type="image/webp">
+                    <source srcset="galleria/costieraamalfitana.jpg" type="image/jpeg">
+                    <img src="galleria/costieraamalfitana.jpg" alt="Costiera Amalfitana" loading="lazy">
+                </picture>
+                <h3>Costiera Amalfitana</h3>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <section class="transfer-section" id="transfer">
         <div class="transfer-container">
@@ -1440,8 +1461,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:info@sarent.it">
-                                <i class="fas fa-envelope"></i> info@sarent.it
+                            <a href="mailto:sarent2022@libero.it">
+                                <i class="fas fa-envelope"></i> sarent2022@libero.it
                             </a>
                         </li>
                         <li>
@@ -1521,7 +1542,7 @@
                                       `Bagagli: ${form['bagagli'].value}\n` +
                                       `Note: ${form['note'].value || 'Nessuna nota'}`;
                     
-                    window.location.href = `mailto:info@sarent.it?subject=Richiesta preventivo&body=${encodeURIComponent(mailtoBody)}`;
+                    window.location.href = `mailto:sarent2022@libero.it?subject=Richiesta preventivo&body=${encodeURIComponent(mailtoBody)}`;
                 }
             } catch (error) {
                 console.error('Error:', error);

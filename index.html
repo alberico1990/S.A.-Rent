@@ -364,18 +364,7 @@
             position: relative; /* Needed for absolute positioning of the link */
         }
 
-        .route-card a {
-            text-decoration: none;
-            color: inherit;
-            display: block; /* Make the entire card clickable */
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1; /* Ensure link is on top */
-        }
-
+      
         .route-header {
             display: flex;
             align-items: center;
@@ -883,6 +872,63 @@
                 transform: translateY(0);
             }
         }
+
+/* Riquadro bianco con bordo trasparente e testo nero */
+.route-card {
+  background-color: white !important; /* Forziamo il bianco */
+  color: black !important; /* Testo nero */
+  border: 2px solid transparent;
+  border-radius: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* Testo dentro il riquadro */
+.route-card h3,
+.route-card p,
+.route-card li,
+.route-card span {
+  color: black !important;
+}
+
+/* Effetto rilievo al passaggio */
+.route-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+/* Bottone arancione */
+.btn-orange {
+  background-color: #f97316;
+  color: white;
+  font-weight: bold;
+  padding: 0.6em 1.4em;
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.btn-orange:hover {
+  background-color: #c75c0c;
+}
+
+/* Contenitore per testo + bottone affiancati */
+.price-info-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+
+
     </style>
 </head>
 <body>
@@ -1282,58 +1328,60 @@
         </div>
     </section>
 
-    <section class="transfer-section" id="noleggio" style="background: white;">
-        <div class="transfer-container">
-            <div class="section-title">
-                <h2>Noleggio Auto Senza Conducente</h2>
-                <p>Flessibilità totale per esplorare la Costiera a tuo piacimento</p>
-            </div>
-            
-            <div class="transfer-routes">
-                <div class="route-card">
-                    <div class="route-header">
-                        <div class="route-icon">
-                            <i class="fas fa-car"></i>
-                        </div>
-                        <h3>City Car</h3>
-                    </div>
-                    <ul class="route-details">
-                        <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
-                        <li><i class="fas fa-gas-pump"></i> Consumo: 18km/litro</li>
-                       </ul>
-                    <span class="price-tag">Assicurazione inclusa</span>
-                </div>
-                
-                <div class="route-card">
-                    <div class="route-header">
-                        <div class="route-icon">
-                            <i class="fas fa-car-side"></i>
-                        </div>
-                        <h3>Berlina Premium</h3>
-                    </div>
-                    <ul class="route-details">
-                        <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
-                        <li><i class="fas fa-gas-pump"></i> Consumo: 12km/litro</li>
-                      </ul>
-                    <span class="price-tag">Confort garantito</span>
-                </div>
-                
-                <div class="route-card">
-                    <div class="route-header">
-                        <div class="route-icon">
-                            <i class="fas fa-van-shuttle"></i>
-                        </div>
-                        <h3>Minivan</h3>
-                    </div>
-                    <ul class="route-details">
-                        <li><i class="fas fa-users"></i> Fino a 8 passeggeri</li>
-                        <li><i class="fas fa-gas-pump"></i> Consumo: 10km/litro</li>
-                      </ul>
-                    <span class="price-tag">Ideale per gruppi</span>
-                </div>
-            </div>
-        </div>
-    </section>
+  
+
+
+
+<section class="transfer-section" id="noleggio" style="background: white;">
+  <div class="transfer-container">
+    <div class="section-title">
+      <h2>Noleggio Auto Senza Conducente</h2>
+      <p>Flessibilità totale per esplorare la Costiera a tuo piacimento</p>
+    </div>
+    <div class="transfer-routes">
+      <!-- City Car -->
+      <div class="route-card">
+        <div class="route-header"><div class="route-icon"><i class="fas fa-car"></i></div><h3>City Car</h3></div>
+        <ul class="route-details">
+          <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
+          <li><i class="fas fa-gas-pump"></i> Consumo: 18 km/litro</li>
+        </ul>
+<div class="price-info-group" style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+  <span class="price-tag">Assicurazione inclusa</span>
+  <a href="mailto:info@sarent.it" class="btn-orange">Richiedi informazioni</a>
+</div>
+
+             </div>
+      <!-- Berlina Premium -->
+      <div class="route-card">
+        <div class="route-header"><div class="route-icon"><i class="fas fa-car-side"></i></div><h3>Berlina Premium</h3></div>
+        <ul class="route-details">
+          <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
+          <li><i class="fas fa-gas-pump"></i> Consumo: 12 km/litro</li>
+        </ul>
+       <div class="price-info-group" style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+  <span class="price-tag">Confort garantito</span>
+  <a href="mailto:info@sarent.it" class="btn-orange">Richiedi informazioni</a>
+</div>
+
+      </div>
+      <!-- Minivan -->
+      <div class="route-card">
+        <div class="route-header"><div class="route-icon"><i class="fas fa-van-shuttle"></i></div><h3>Minivan</h3></div>
+        <ul class="route-details">
+          <li><i class="fas fa-users"></i> Fino a 8 passeggeri</li>
+          <li><i class="fas fa-gas-pump"></i> Consumo: 10 km/litro</li>
+        </ul>
+       <div class="price-info-group" style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+  <span class="price-tag">Ideale per gruppi</span>
+  <a href="mailto:info@sarent.it" class="btn-orange">Richiedi informazioni</a>
+</div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <section class="map-section" style="padding: 0; background: var(--light);">
         <div class="section-title" style="padding-top: 2rem;">

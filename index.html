@@ -656,6 +656,53 @@
             document.getElementById('ritorno-group').style.display =
                 this.value === 'andata-ritorno' ? 'block' : 'none';
         });
+<script>
+// === Calendar endpoint ===
+const CAL_WEBAPP = "https://script.google.com/macros/s/AKfycbz11tIDJT1H2lrblB7nzetb5b8jqaBk_gU85gdsntnpUe4VAeS8WTt5NcPMGKvgXHMFPw/exec";
+const CAL_KEY    = "K7gQw9rF2tZ6xBn3"; // stessa chiave di Code.gs
+
+function selText(id) {
+  const el = document.getElementById(id);
+  return el.options[el.selectedIndex]?.text || "";
+}
+function addMinutesHHMM(hhmm, mins) {
+  const [h,m] = hhmm.split(":").map(Number);
+  const d = new Date(0,0,1,h,m,0,0);
+  d.setMinutes(d.getMinutes()+mins);
+  const hh = String(d.getHours()).padStart(2,"0");
+  const mm = String(d.getMinutes()).padStart(2,"0");
+  return `${hh}:${mm}`;
+}
+function sendToCalendar(form) {
+  try {
+    const tipo    = selText('tipo-servizio');
+    const pickup  = selText('partenza');
+    const dropoff = selText('destinazione');
+    const note    = document.getElementById('note').value || "";
+
+    const startIso = document.getElementById('data-partenza').value; // "YYYY-MM-DDTHH:MM"
+    if (!startIso) return;
+    const [date, start] = startIso.split("T");
+
+    const retIso = document.getElementById('data-ritorno').value;
+    const end = retIso ? retIso.split("T")[1] : addMinutesHHMM(start, 120);
+
+    const title = `Transfer ${pickup} → ${dropoff} (${tipo})`;
+
+    const url = `${CAL_WEBAPP}?confirm=1&key=${encodeURIComponent(CAL_KEY)}`
+      + `&title=${encodeURIComponent(title)}`
+      + `&date=${encodeURIComponent(date)}`
+      + `&start=${encodeURIComponent(start)}`
+      + `&end=${encodeURIComponent(end)}`
+      + `&pickup=${encodeURIComponent(pickup)}`
+      + `&dropoff=${encodeURIComponent(dropoff)}`
+      + `&notes=${encodeURIComponent(note)}`
+      + `&remind=120`;
+
+    fetch(url, { method: "GET", mode: "no-cors", keepalive: true }).catch(()=>{});
+  } catch(_) {}
+}
+</script>
 
         // Gestione form
         document.getElementById('transfer-form').addEventListener('submit', async function (e) {
@@ -663,6 +710,8 @@
             const form = e.target;
             const formData = new FormData(form);
             const feedback = document.getElementById('feedback-message');
+			sendToCalendar(form);
+
 
             try {
                 // ATTENZIONE: aggiorna con il tuo endpoint Formspree corretto se vuoi invio diretto

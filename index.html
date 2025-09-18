@@ -656,6 +656,7 @@
             document.getElementById('ritorno-group').style.display =
                 this.value === 'andata-ritorno' ? 'block' : 'none';
         });
+</script>
 <script>
 // === Calendar endpoint ===
 const CAL_WEBAPP = "https://script.google.com/macros/s/AKfycbz11tIDJT1H2lrblB7nzetb5b8jqaBk_gU85gdsntnpUe4VAeS8WTt5NcPMGKvgXHMFPw/exec";
@@ -703,7 +704,7 @@ function sendToCalendar(form) {
   } catch(_) {}
 }
 </script>
-
+<script>
         // Gestione form
         document.getElementById('transfer-form').addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -741,7 +742,8 @@ function sendToCalendar(form) {
                 alert("Errore nell'invio. Contattaci via WhatsApp al +39 340 621 0835");
             }
         });
-
+</script>
+<script>
         // Animazioni al caricamento
         window.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.service-card, .route-card');

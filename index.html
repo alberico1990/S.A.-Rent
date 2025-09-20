@@ -199,6 +199,32 @@
 @media (max-width:640px){
   .store-badges img{height:88px;}
 }
+.store-badges--footer img{height:100px}
+@media (max-width:640px){.store-badges--footer img{height:88px}}
+.store-badges--form img{height:75px}
+@media (max-width:640px){.store-badges--form img{height:63px}}
+.cta-info{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:12px 18px; border-radius:12px;
+  background:linear-gradient(135deg,#ffffff,#f3f6ff);
+  border:1px solid rgba(0,0,0,0.06);
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  color:var(--primary); text-decoration:none;
+  transition:transform .15s ease, box-shadow .15s ease, background .2s ease;
+}
+.cta-info:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,0.12);
+  background:linear-gradient(135deg,#fff,#eaf1ff);
+}
+.cta-info i{ font-size:1.2rem; color:var(--secondary); }
+.cta-text{ display:flex; flex-direction:column; line-height:1.15; }
+.cta-text strong{ font-size:.95rem; color:var(--primary); }
+.cta-text small{ font-size:.8rem; color:var(--gray); }
+@media (max-width:575px){ .cta-info{ width:100%; justify-content:center; } }
+
+
+
 
     </style>
 </head>
@@ -460,72 +486,99 @@
                     </div>
 
                     <button type="submit" class="btn btn-secondary" style="width: 100%;"><i class="fas fa-paper-plane"></i> Richiedi Preventivo</button>
-                </form>
+               </button>
+<div class="store-badges store-badges--form">
+  <a href="https://play.google.com/store/apps/details?id=com.alberico.sarentapp"
+     target="_blank" rel="noopener nofollow noreferrer">
+    <img src="https://play.google.com/intl/it/badges/static/images/badges/it_badge_web_generic.png"
+         alt="Disponibile su Google Play">
+  </a>
+</div>
+
+
+				</form>
                 <div id="feedback-message" class="feedback-message"><i class="fas fa-check-circle"></i> Grazie! Ti risponderemo a breve.</div>
             </div>
         </div>
     </section>
 
     <section class="transfer-section" id="noleggio" style="background: white;">
-      <div class="transfer-container">
-        <div class="section-title">
-          <h2>Noleggio Auto Senza Conducente</h2>
-          <p>Flessibilità totale per esplorare la Costiera a tuo piacimento</p>
+  <div class="transfer-container">
+    <div class="section-title">
+      <h2>Noleggio Auto Senza Conducente</h2>
+      <p>Flessibilità totale per esplorare la Costiera a tuo piacimento</p>
+    </div>
+
+    <div class="transfer-routes">
+      <!-- City Car -->
+      <div class="route-card">
+        <div class="route-header">
+          <div class="route-icon"><i class="fas fa-car"></i></div><h3>City Car</h3>
         </div>
-        <div class="transfer-routes">
-          <!-- City Car -->
-          <div class="route-card">
-            <div class="route-header"><div class="route-icon"><i class="fas fa-car"></i></div><h3>City Car</h3></div>
-            <ul class="route-details">
-              <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
-              <li><i class="fas fa-gas-pump"></i> Consumo: 18 km/litro</li>
-            </ul>
-            <div class="price-info-group" style="display:flex;align-items:center;gap:15px;margin-top:10px;">
-              <span class="price-tag">Assicurazione inclusa</span>
-             <a href="mailto:info@sarent.it?subject=Richiesta%20informazioni&body=Ciao%2C%20vorrei%20informazioni%20sul%20noleggio%20City%20Car."
-   class="btn-orange">
-    <i class="fas fa-envelope"></i> Richiedi informazioni
-</a>
-
-            </div>
-          </div>
-
-          <!-- Berlina Premium -->
-          <div class="route-card">
-            <div class="route-header"><div class="route-icon"><i class="fas fa-car-side"></i></div><h3>Berlina Premium</h3></div>
-            <ul class="route-details">
-              <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
-              <li><i class="fas fa-gas-pump"></i> Consumo: 12 km/litro</li>
-            </ul>
-            <div class="price-info-group" style="display:flex;align-items:center;gap:15px;margin-top:10px;">
-              <span class="price-tag">Confort garantito</span>
-              <a href="mailto:info@sarent.it?subject=Richiesta%20informazioni&body=Ciao%2C%20vorrei%20informazioni%20sul%20noleggio%20Berlina%20Premium."
-   class="btn-orange">
-    <i class="fas fa-envelope"></i> Richiedi informazioni
-</a>
-
-            </div>
-          </div>
-
-          <!-- Minivan -->
-          <div class="route-card">
-            <div class="route-header"><div class="route-icon"><i class="fas fa-van-shuttle"></i></div><h3>Minivan</h3></div>
-            <ul class="route-details">
-              <li><i class="fas fa-users"></i> Fino a 8 passeggeri</li>
-              <li><i class="fas fa-gas-pump"></i> Consumo: 10 km/litro</li>
-            </ul>
-            <div class="price-info-group" style="display:flex;align-items:center;gap:15px;margin-top:10px;">
-              <span class="price-tag">Ideale per gruppi</span>
-             <a href="mailto:info@sarent.it?subject=Richiesta%20informazioni&body=Ciao%2C%20vorrei%20informazioni%20sul%20noleggio%20Minivan."
-   class="btn-orange">
-    <i class="fas fa-envelope"></i> Richiedi informazioni
-</a>
-
-            </div>
-          </div>
+        <ul class="route-details">
+          <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
+          <li><i class="fas fa-gas-pump"></i> Consumo: 18 km/litro</li>
+        </ul>
+        <div class="price-info-group" style="display:flex;align-items:center;gap:15px;margin-top:10px;">
+          <span class="price-tag">Assicurazione inclusa</span>
+          <a href="mailto:info@sarent.it?subject=Richiesta%20informazioni&body=Ciao%2C%20vorrei%20informazioni%20sul%20noleggio%20City%20Car."
+             class="cta-info" aria-label="Richiedi informazioni City Car">
+            <i class="fas fa-info-circle"></i>
+            <span class="cta-text">
+              <strong>Richiedi informazioni</strong>
+              <small>risposta in giornata</small>
+            </span>
+          </a>
         </div>
       </div>
-    </section>
+
+      <!-- Berlina Premium -->
+      <div class="route-card">
+        <div class="route-header">
+          <div class="route-icon"><i class="fas fa-car-side"></i></div><h3>Berlina Premium</h3>
+        </div>
+        <ul class="route-details">
+          <li><i class="fas fa-users"></i> Fino a 4 passeggeri</li>
+          <li><i class="fas fa-gas-pump"></i> Consumo: 12 km/litro</li>
+        </ul>
+        <div class="price-info-group" style="display:flex;align-items:center;gap:15px;margin-top:10px;">
+          <span class="price-tag">Confort garantito</span>
+          <a href="mailto:info@sarent.it?subject=Richiesta%20informazioni&body=Ciao%2C%20vorrei%20informazioni%20sul%20noleggio%20Berlina%20Premium."
+             class="cta-info" aria-label="Richiedi informazioni Berlina Premium">
+            <i class="fas fa-info-circle"></i>
+            <span class="cta-text">
+              <strong>Richiedi informazioni</strong>
+              <small>risposta in giornata</small>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Minivan -->
+      <div class="route-card">
+        <div class="route-header">
+          <div class="route-icon"><i class="fas fa-van-shuttle"></i></div><h3>Minivan</h3>
+        </div>
+        <ul class="route-details">
+          <li><i class="fas fa-users"></i> Fino a 8 passeggeri</li>
+          <li><i class="fas fa-gas-pump"></i> Consumo: 10 km/litro</li>
+        </ul>
+        <div class="price-info-group" style="display:flex;align-items:center;gap:15px;margin-top:10px;">
+          <span class="price-tag">Ideale per gruppi</span>
+          <a href="mailto:info@sarent.it?subject=Richiesta%20informazioni&body=Ciao%2C%20vorrei%20informazioni%20sul%20noleggio%20Minivan."
+             class="cta-info" aria-label="Richiedi informazioni Minivan">
+            <i class="fas fa-info-circle"></i>
+            <span class="cta-text">
+              <strong>Richiedi informazioni</strong>
+              <small>risposta in giornata</small>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <section class="map-section" style="padding: 0; background: var(--light);">
         <div class="section-title" style="padding-top: 2rem;">
@@ -657,6 +710,16 @@
                     </ul>
                 </div>
             </div>
+			
+			<div class="store-badges store-badges--footer">
+  <a href="https://play.google.com/store/apps/details?id=com.alberico.sarentapp"
+     target="_blank" rel="noopener nofollow noreferrer">
+    <img
+      src="https://play.google.com/intl/it/badges/static/images/badges/it_badge_web_generic.png"
+      alt="Disponibile su Google Play">
+  </a>
+</div>
+
 
             <div class="copyright">
                 © 2023 S.A. Rent - P.IVA 10014351216 - Tutti i diritti riservati
